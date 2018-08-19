@@ -4,14 +4,16 @@
   </div>
 
   <div class="navbar-start">
-    <a class="navbar-item is-size-5">Form</a>
-    <a class="navbar-item is-size-5">Display</a>
+    <a class="navbar-item is-size-5" [routerLink]="['forms']" routerLinkActive="has-background-primary">Form</a>
+    <a class="navbar-item is-size-5" [routerLink]="['display']" routerLinkActive="has-background-primary">Display</a>
   </div>
 
   <div class="navbar-end">
     <div class="navbar-item">
-      <button class="button is-danger">Logout</button>
+      <a class="button is-danger" [routerLink]="['/home']" routerLinkActive="has-background-primary">Logout</a>
     </div>
   </div>
 
 </shared-navbar>
+
+<router-outlet></router-outlet>
