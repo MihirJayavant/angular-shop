@@ -1,10 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser'
 import { NgModule } from '@angular/core'
+import { Routes, RouterModule } from '@angular/router'
+import { StoreModule } from '@ngrx/store'
+import { environment } from '../environments/environment'
 
 import { AppComponent } from './app.component'
 import { HomeComponent, LoginComponent } from './home'
-import { Routes, RouterModule } from '@angular/router'
-import { environment } from '../environments/environment'
 import { DashboardModule } from './dashboard/dashboard.module'
 
 const routes: Routes = [
@@ -20,7 +21,8 @@ const routes: Routes = [
       routes,
       environment.enableTracing ? { enableTracing: true } : {}
     ),
-    DashboardModule
+    DashboardModule,
+    StoreModule.forRoot({})
   ],
   providers: [],
   bootstrap: [AppComponent]
