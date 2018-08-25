@@ -2,10 +2,13 @@ import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { Routes, RouterModule } from '@angular/router'
 
-import { DashboardComponent } from './'
 import { SharedModule } from '../shared/shared.module'
-import { CustomerFormsComponent } from './'
-import { CustomerDisplayComponent } from './'
+import {
+  DashboardComponent,
+  CustomerFormsComponent,
+  CustomerDisplayComponent,
+  CustomerCardComponent
+} from './'
 
 const routes: Routes = [
   {
@@ -24,7 +27,8 @@ const routes: Routes = [
   declarations: [
     DashboardComponent,
     CustomerFormsComponent,
-    CustomerDisplayComponent
+    CustomerDisplayComponent,
+    CustomerCardComponent
   ]
 })
 export class DashboardModule {}
