@@ -1,13 +1,13 @@
 import { List } from 'immutable'
 import { Customer } from '../../models'
-import { CustomerAction, ADD_CUSTOMER } from './../actions/customer.action'
+import { CustomerAction, ADD_CUSTOMER } from './../actions'
 
 export interface CustomerState {
   data: List<Customer>
 }
 
 export const initalState: CustomerState = {
-  data: List<Customer>()
+  data: List<Customer>([{ id: 1, name: 'hello', email: 'dk', mobile: 123765 }])
 }
 
 export function reducer(
@@ -21,5 +21,3 @@ export function reducer(
 
   return state
 }
-
-export const getCustomers = (state: CustomerState) => state.data

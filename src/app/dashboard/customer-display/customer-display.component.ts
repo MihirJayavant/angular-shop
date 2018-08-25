@@ -1,16 +1,22 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core'
 import { Store } from '@ngrx/store'
 import { DashboardState, getAllCustomers } from '../store'
+import { Observable } from 'rxjs'
+import { Customer } from '../models'
+import { List } from 'immutable'
 
 @Component({
   selector: 'app-customer-display',
   templateUrl: './customer-display.component.html',
-  styles: []
+  styles: [],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CustomerDisplayComponent implements OnInit {
+  public customers$: Observable<List<Customer>>
+
   constructor(public store: Store<DashboardState>) {}
 
   public ngOnInit() {
-    this.store.select(getAllCustomers).subscribe(p => console.log(p))
+    this.customers$ = this.store.select(getAllCustomers)
   }
 }

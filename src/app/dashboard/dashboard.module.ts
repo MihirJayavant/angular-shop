@@ -11,8 +11,7 @@ import {
   CustomerDisplayComponent,
   CustomerCardComponent
 } from './'
-import { reducers } from './store'
-import { dashboardName } from './store/store.name'
+import { reducers, dashboardName } from './store'
 
 const routes: Routes = [
   {
