@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
+import { ReactiveFormsModule } from '@angular/forms'
 import { Routes, RouterModule } from '@angular/router'
 import { StoreModule } from '@ngrx/store'
 
@@ -28,6 +29,7 @@ const routes: Routes = [
 @NgModule({
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     RouterModule.forChild(routes),
     SharedModule,
     StoreModule.forFeature(dashboardName, reducers)

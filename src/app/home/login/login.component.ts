@@ -7,10 +7,14 @@ import { Router } from '@angular/router'
   styles: []
 })
 export class LoginComponent {
+  public formData = {
+    email: '',
+    password: ''
+  }
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) {}
 
-  public onLogin() {
+  public onLogin(form: any) {
     this.router.navigate(['/dashboard'])
   }
 }

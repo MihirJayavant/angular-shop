@@ -1,5 +1,5 @@
 import { List } from 'immutable'
-import { Customer } from '../../models'
+import { Customer, CustomerType } from '../../models'
 import { CustomerAction, ADD_CUSTOMER } from './../actions'
 
 export interface CustomerState {
@@ -7,7 +7,15 @@ export interface CustomerState {
 }
 
 export const initalState: CustomerState = {
-  data: List<Customer>([{ id: 1, name: 'hello', email: 'dk', mobile: 123765 }])
+  data: List<Customer>([
+    {
+      id: 1,
+      name: 'hello',
+      email: 'dk',
+      mobile: 123765,
+      type: CustomerType.lead
+    }
+  ])
 }
 
 export function reducer(
@@ -16,7 +24,7 @@ export function reducer(
 ): CustomerState {
   switch (action.type) {
     case ADD_CUSTOMER:
-      return { ...state }
+      return { ...state, data: state.data.push(action.payload) }
   }
 
   return state

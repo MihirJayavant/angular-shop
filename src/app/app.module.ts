@@ -7,6 +7,7 @@ import { environment } from '../environments/environment'
 import { AppComponent } from './app.component'
 import { HomeComponent, LoginComponent } from './home'
 import { DashboardModule } from './dashboard/dashboard.module'
+import { FormsModule } from '@angular/forms'
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -17,6 +18,7 @@ const routes: Routes = [
   declarations: [AppComponent, LoginComponent, HomeComponent],
   imports: [
     BrowserModule,
+    FormsModule,
     RouterModule.forRoot(
       routes,
       environment.enableTracing ? { enableTracing: true } : {}

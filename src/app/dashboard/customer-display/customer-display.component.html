@@ -1,5 +1,5 @@
-<div class="columns">
-  <div class="column" *ngFor="let customer of customers$ | async">
-    <app-customer-card></app-customer-card>
+<div class="columns is-gapless is-multiline">
+  <div class="column is-3" *ngFor="let customer of customers$ | async">
+    <app-customer-card [customer]="customer"></app-customer-card>
   </div>
 </div>
