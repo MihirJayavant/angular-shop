@@ -1,15 +1,15 @@
 import { Component } from '@angular/core'
-import { Customer, CustomerType } from '../models'
+import { Customer, CustomerType } from '../../models'
 import { Store } from '@ngrx/store'
-import { CustomerState, AddCustomer } from '../store'
+import { CustomerState, AddCustomer } from '../../store'
 import { FormBuilder, Validators, AbstractControl } from '@angular/forms'
 
 @Component({
-  selector: 'app-customer-forms',
-  templateUrl: './customer-forms.component.html',
+  selector: 'app-customer-forms-page',
+  templateUrl: './customer-forms-page.component.html',
   styles: []
 })
-export class CustomerFormsComponent {
+export class CustomerFormsPageComponent {
   public form = this.formBuilder.group({
     name: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],

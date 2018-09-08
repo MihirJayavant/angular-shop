@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core'
-import { Customer } from '../../models'
-import { mapCustomerToTitle } from '../../helpers'
+import { Customer } from '../../../models'
+import { mapCustomerToTitle } from '../../../helpers'
 
 @Component({
   selector: 'app-customer-card',

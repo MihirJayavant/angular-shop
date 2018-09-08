@@ -5,26 +5,22 @@ import { StoreModule } from '@ngrx/store'
 import { environment } from '../environments/environment'
 
 import { AppComponent } from './app.component'
-import { HomeComponent, LoginComponent } from './home'
-import { DashboardModule } from './dashboard/dashboard.module'
-import { FormsModule } from '@angular/forms'
+import { DashboardModule } from './dashboard'
+import { HomeModule } from './home'
 
-const routes: Routes = [
-  { path: 'home', component: HomeComponent },
-  { path: '', pathMatch: 'full', redirectTo: 'home' }
-]
+const routes: Routes = [{ path: '', pathMatch: 'full', redirectTo: 'home' }]
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, HomeComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
-    FormsModule,
     RouterModule.forRoot(
       routes,
       environment.enableTracing ? { enableTracing: true } : {}
     ),
+    StoreModule.forRoot({}),
     DashboardModule,
-    StoreModule.forRoot({})
+    HomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

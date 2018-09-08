@@ -4,14 +4,14 @@ import { ReactiveFormsModule } from '@angular/forms'
 import { Routes, RouterModule } from '@angular/router'
 import { StoreModule } from '@ngrx/store'
 
-import { SharedModule } from '../shared/shared.module'
+import { SharedModule } from '../shared'
 
 import {
   DashboardComponent,
-  CustomerFormsComponent,
-  CustomerDisplayComponent,
+  CustomerFormsPageComponent,
+  CustomerDisplayPageComponent,
   CustomerCardComponent
-} from './'
+} from './components'
 import { reducers, dashboardName } from './store'
 
 const routes: Routes = [
@@ -19,8 +19,8 @@ const routes: Routes = [
     path: 'dashboard',
     component: DashboardComponent,
     children: [
-      { path: 'forms', component: CustomerFormsComponent },
-      { path: 'display', component: CustomerDisplayComponent },
+      { path: 'forms', component: CustomerFormsPageComponent },
+      { path: 'display', component: CustomerDisplayPageComponent },
       { path: '', pathMatch: 'full', redirectTo: 'forms' }
     ]
   }
@@ -36,8 +36,8 @@ const routes: Routes = [
   ],
   declarations: [
     DashboardComponent,
-    CustomerFormsComponent,
-    CustomerDisplayComponent,
+    CustomerFormsPageComponent,
+    CustomerDisplayPageComponent,
     CustomerCardComponent
   ]
 })

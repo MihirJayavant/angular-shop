@@ -1,1 +1,1 @@
-export * from './navbar/navbar.component'
+export { SharedModule } from './shared.module'
