@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
-import { ReactiveFormsModule } from '@angular/forms'
+import { ReactiveFormsModule, FormsModule } from '@angular/forms'
 import { Routes, RouterModule } from '@angular/router'
 import { StoreModule } from '@ngrx/store'
 
@@ -13,6 +13,8 @@ import {
   CustomerCardComponent
 } from './components'
 import { reducers, dashboardName } from './store'
+import { FilterCustomerNamePipe } from './pipes'
+import { FilterCustomerTypePipe } from './pipes/filter-customer-type.pipe'
 
 const routes: Routes = [
   {
@@ -29,16 +31,19 @@ const routes: Routes = [
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
     ReactiveFormsModule,
     RouterModule.forChild(routes),
-    SharedModule,
-    StoreModule.forFeature(dashboardName, reducers)
+    StoreModule.forFeature(dashboardName, reducers),
+    SharedModule
   ],
   declarations: [
     DashboardComponent,
     CustomerFormsPageComponent,
     CustomerDisplayPageComponent,
-    CustomerCardComponent
+    CustomerCardComponent,
+    FilterCustomerNamePipe,
+    FilterCustomerTypePipe
   ]
 })
 export class DashboardModule {}

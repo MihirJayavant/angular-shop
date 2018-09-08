@@ -1,5 +1,27 @@
-<div class="columns is-gapless is-multiline">
-  <div class="column is-3" *ngFor="let customer of customers$ | async">
-    <app-customer-card [customer]="customer"></app-customer-card>
+<div>
+
+  <div class="columns is-centered">
+    <div class="column is-half">
+      <div class="field has-addons">
+        <div class="control">
+          <input class="input" type="text" placeholder="Search by name" [(ngModel)]="searchText">
+        </div>
+        <p class="control">
+          <span class="select">
+            <select (change)="onTypeChange($event)">
+              <option selected value="Customer">Customer</option>
+              <option value="Lead">Lead</option>
+            </select>
+          </span>
+        </p>
+      </div>
+    </div>
   </div>
+
+  <div class="columns is-gapless is-multiline">
+    <div class="column is-3" *ngFor="let customer of customers$ | async | filterCustomerType:customerType | filterCustomerName:searchText">
+      <app-customer-card [customer]="customer"></app-customer-card>
+    </div>
+  </div>
+
 </div>
