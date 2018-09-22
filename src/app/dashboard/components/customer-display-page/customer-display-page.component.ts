@@ -13,14 +13,9 @@ import { customerTypeNames } from '../../helpers'
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CustomerDisplayPageComponent {
-  public customers$: Observable<List<Customer>>
   public searchText = ''
   public customerType = 'All'
   public customerTypeNames = customerTypeNames
-
-  constructor(public store: Store<DashboardState>) {
-    this.customers$ = this.store.select(getAllCustomers)
-  }
 
   public onTypeChange(event: any) {
     const value = event.srcElement.value

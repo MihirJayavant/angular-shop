@@ -1,11 +1,11 @@
 <div>
 
-  <div class="columns is-centered">
+  <div class="columns is-centered is-marginless">
     <div class="column is-half">
       <div class="field has-addons">
-        <div class="control">
+        <p class="control is-expanded">
           <input class="input" type="text" placeholder="Search by name" [(ngModel)]="searchText">
-        </div>
+        </p>
         <p class="control">
           <span class="select">
             <select (change)="onTypeChange($event)">
@@ -18,10 +18,6 @@
     </div>
   </div>
 
-  <div class="columns is-gapless is-multiline">
-    <div class="column is-3" *ngFor="let customer of customers$ | async | filterCustomerType:customerType | filterCustomerName:searchText">
-      <app-customer-card [customer]="customer"></app-customer-card>
-    </div>
-  </div>
+  <app-customer-cards [search]="searchText" [type]="customerType"></app-customer-cards>
 
 </div>

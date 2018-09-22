@@ -14,7 +14,8 @@ import {
 } from './components'
 import { reducers, dashboardName } from './store'
 import { FilterCustomerNamePipe } from './pipes'
-import { FilterCustomerTypePipe } from './pipes/filter-customer-type.pipe'
+import { FilterCustomerTypePipe } from './pipes/filter-customer-type.pipe';
+import { CustomerCardsComponent } from './components/customer-display-page/customer-cards/customer-cards.component'
 
 const routes: Routes = [
   {
@@ -43,7 +44,8 @@ const routes: Routes = [
     CustomerDisplayPageComponent,
     CustomerCardComponent,
     FilterCustomerNamePipe,
-    FilterCustomerTypePipe
+    FilterCustomerTypePipe,
+    CustomerCardsComponent
   ]
 })
 export class DashboardModule {}
