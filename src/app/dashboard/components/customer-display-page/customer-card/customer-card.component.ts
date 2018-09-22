@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core'
 import { Customer } from '../../../models'
-import { mapCustomerToTitle } from '../../../helpers'
 
 @Component({
   selector: 'app-customer-card',
@@ -9,11 +8,11 @@ import { mapCustomerToTitle } from '../../../helpers'
 })
 export class CustomerCardComponent implements OnInit {
   @Input()
-  public customer: Customer
+  public customer: Customer | null = null
 
   public title = ''
 
   public ngOnInit(): void {
-    this.title = mapCustomerToTitle(this.customer)
+    if (!!this.customer) this.title = this.customer.type
   }
 }

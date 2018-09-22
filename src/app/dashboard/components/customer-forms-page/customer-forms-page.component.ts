@@ -3,6 +3,7 @@ import { Customer, CustomerType } from '../../models'
 import { Store } from '@ngrx/store'
 import { CustomerState, AddCustomer } from '../../store'
 import { FormBuilder, Validators, AbstractControl } from '@angular/forms'
+import { customerTypeNames } from '../../helpers'
 
 @Component({
   selector: 'app-customer-forms-page',
@@ -10,11 +11,13 @@ import { FormBuilder, Validators, AbstractControl } from '@angular/forms'
   styles: []
 })
 export class CustomerFormsPageComponent {
+  public customerType = customerTypeNames
+
   public form = this.formBuilder.group({
     name: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
     mobile: [0, [Validators.required]],
-    customerType: ['Customer'],
+    customerType: [CustomerType.basic],
     billNumber: [{ value: 0, disabled: false }],
     billAmount: [{ value: 0, disabled: false }]
   })
@@ -26,13 +29,12 @@ export class CustomerFormsPageComponent {
 
   public onSubmit() {
     const value = this.form.value
-    const c: Customer = <Customer>{
+    const c: Customer = {
       id: 2,
       name: value.name,
       email: value.email,
       mobile: value.mobile,
-      type:
-        value.customerType === 'Lead' ? CustomerType.lead : CustomerType.basic
+      type: value.customerType
     }
     this.store.dispatch(new AddCustomer(c))
   }

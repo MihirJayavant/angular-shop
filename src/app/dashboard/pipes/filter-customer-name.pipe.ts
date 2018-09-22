@@ -15,7 +15,7 @@ export class FilterCustomerNamePipe implements PipeTransform {
       return value
     } else {
       return value
-        .filter((p: Customer) => p.name.startsWith(searchText))
+        .filter(p => (!!p ? p.name.startsWith(searchText) : false))
         .toList()
     }
   }
