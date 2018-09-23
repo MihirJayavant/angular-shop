@@ -1,4 +1,9 @@
-import { Component, Input, ChangeDetectionStrategy } from '@angular/core'
+import {
+  Component,
+  Input,
+  ChangeDetectionStrategy,
+  HostListener
+} from '@angular/core'
 import { Observable } from 'rxjs'
 import { List } from 'immutable'
 import { Customer } from 'src/app/dashboard/models'
