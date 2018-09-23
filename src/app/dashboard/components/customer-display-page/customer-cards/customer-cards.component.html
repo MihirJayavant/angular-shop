@@ -1,5 +1,7 @@
-<div class="columns is-gapless is-multiline">
-  <div class="column is-3" *ngFor="let customer of customers$ | async | filterCustomerType:customerType | filterCustomerName:searchText">
-    <app-customer-card [customer]="customer"></app-customer-card>
+<div class="scroll-y">
+  <div class="columns is-gapless is-multiline">
+    <div class="column is-3" *ngFor="let customer of customers$ | async | filterCustomerType:customerType | filterCustomerName:searchText">
+      <app-customer-card [customer]="customer"></app-customer-card>
+    </div>
   </div>
 </div>

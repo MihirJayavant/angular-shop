@@ -1,9 +1,5 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core'
-import { Store } from '@ngrx/store'
-import { DashboardState, getAllCustomers } from '../../store'
-import { Observable } from 'rxjs'
-import { Customer, CustomerType } from '../../models'
-import { List } from 'immutable'
+import { Component, ChangeDetectionStrategy } from '@angular/core'
+import { CustomerType } from '../../models'
 import { customerTypeNames } from '../../helpers'
 
 @Component({

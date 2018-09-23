@@ -10,12 +10,10 @@ import {
   DashboardComponent,
   CustomerFormsPageComponent,
   CustomerDisplayPageComponent,
-  CustomerCardComponent
+  components
 } from './components'
 import { reducers, dashboardName } from './store'
-import { FilterCustomerNamePipe } from './pipes'
-import { FilterCustomerTypePipe } from './pipes/filter-customer-type.pipe';
-import { CustomerCardsComponent } from './components/customer-display-page/customer-cards/customer-cards.component'
+import { pipes } from './pipes'
 
 const routes: Routes = [
   {
@@ -38,14 +36,6 @@ const routes: Routes = [
     StoreModule.forFeature(dashboardName, reducers),
     SharedModule
   ],
-  declarations: [
-    DashboardComponent,
-    CustomerFormsPageComponent,
-    CustomerDisplayPageComponent,
-    CustomerCardComponent,
-    FilterCustomerNamePipe,
-    FilterCustomerTypePipe,
-    CustomerCardsComponent
-  ]
+  declarations: [...components, ...pipes]
 })
 export class DashboardModule {}

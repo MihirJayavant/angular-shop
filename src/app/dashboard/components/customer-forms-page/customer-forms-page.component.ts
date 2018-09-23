@@ -1,4 +1,4 @@
-import { Component } from '@angular/core'
+import { Component, ChangeDetectionStrategy } from '@angular/core'
 import { Customer, CustomerType } from '../../models'
 import { Store } from '@ngrx/store'
 import { CustomerState, AddCustomer } from '../../store'
@@ -8,7 +8,8 @@ import { customerTypeNames } from '../../helpers'
 @Component({
   selector: 'app-customer-forms-page',
   templateUrl: './customer-forms-page.component.html',
-  styles: []
+  styles: [],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CustomerFormsPageComponent {
   public customerType = customerTypeNames

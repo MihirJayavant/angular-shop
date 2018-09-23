@@ -1,12 +1,11 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, ChangeDetectionStrategy } from '@angular/core'
 
 @Component({
   selector: 'shared-navbar',
   templateUrl: './navbar.component.html',
-  styles: []
+  styles: [],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NavbarComponent {
-
-  constructor() { }
-
+  constructor() {}
 }

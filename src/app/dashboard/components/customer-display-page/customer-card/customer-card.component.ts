@@ -1,10 +1,16 @@
-import { Component, Input, OnInit } from '@angular/core'
+import {
+  Component,
+  Input,
+  OnInit,
+  ChangeDetectionStrategy
+} from '@angular/core'
 import { Customer } from '../../../models'
 
 @Component({
   selector: 'app-customer-card',
   templateUrl: './customer-card.component.html',
-  styles: []
+  styles: [],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CustomerCardComponent implements OnInit {
   @Input()
