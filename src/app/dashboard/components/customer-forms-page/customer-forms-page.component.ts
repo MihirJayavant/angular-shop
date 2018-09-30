@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store'
 import { CustomerState, AddCustomer } from '../../store'
 import { FormBuilder, Validators, AbstractControl } from '@angular/forms'
 import { customerTypeNames } from '../../helpers'
+import { nameValidator } from './form.validators'
 
 @Component({
   selector: 'app-customer-forms-page',
@@ -15,7 +16,7 @@ export class CustomerFormsPageComponent {
   public customerType = customerTypeNames
 
   public form = this.formBuilder.group({
-    name: ['', Validators.required],
+    name: ['', [Validators.required, nameValidator]],
     email: ['', [Validators.required, Validators.email]],
     mobile: [0, [Validators.required]],
     customerType: [CustomerType.basic],
@@ -23,10 +24,7 @@ export class CustomerFormsPageComponent {
     billAmount: [{ value: 0, disabled: false }]
   })
 
-  constructor(
-    private store: Store<CustomerState>,
-    private formBuilder: FormBuilder
-  ) {}
+  constructor(private store: Store<CustomerState>, private formBuilder: FormBuilder) {}
 
   public onSubmit() {
     const value = this.form.value
