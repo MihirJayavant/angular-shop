@@ -2,14 +2,14 @@
 
   <div class="navbar-brand">
     <ng-content select="div.head"></ng-content>
-    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
+    <div class="navbar-burger burger" (click)="onMenuClick()" [sharedActive]="isActive">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
   </div>
 
-  <div class="navbar-menu">
+  <div class="navbar-menu" [sharedActive]="isActive">
 
     <ng-content select="div.navbar-start"></ng-content>
     <ng-content select="div.navbar-end"></ng-content>

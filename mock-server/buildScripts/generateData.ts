@@ -1,7 +1,9 @@
 import * as chalk from 'chalk'
 import * as fs from 'fs'
 
-import { customerSchema } from './customerSchema'
+import { basicCustomerSchema } from './basicCustomerSchema'
+import { leadSchema } from './leadSchema'
+import { combineSchema } from './helper'
 
 const jsf = require('json-schema-faker')
 const faker = require('faker')
@@ -15,9 +17,11 @@ jsf.extend('faker', () => {
   }
   return faker
 })
-const compiledGroupSchema = jsf.generate(customerSchema)
+const compiledBasicCustomerSchema = jsf.generate(basicCustomerSchema)
+const compiledLeadSchema = jsf.generate(leadSchema)
+const compiledCombinedSchema = combineSchema(compiledBasicCustomerSchema, compiledLeadSchema)
 
-const json = JSON.stringify({ customer: compiledGroupSchema })
+const json = JSON.stringify({ customer: compiledCombinedSchema })
 
 fs.writeFile('./mock-server/buildScripts/db.json', json, err => {
   if (err) {

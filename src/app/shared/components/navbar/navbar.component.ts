@@ -7,5 +7,11 @@ import { Component, ChangeDetectionStrategy } from '@angular/core'
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NavbarComponent {
+  public isActive = false
+
   constructor() {}
+
+  onMenuClick() {
+    this.isActive = !this.isActive
+  }
 }

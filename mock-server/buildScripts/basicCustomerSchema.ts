@@ -1,7 +1,7 @@
-export const customerSchema = {
+export const basicCustomerSchema = {
   type: 'array',
   minItems: 0,
-  maxItems: 50,
+  maxItems: 25,
   uniqueItems: true,
   items: {
     type: 'object',
