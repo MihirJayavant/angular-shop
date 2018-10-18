@@ -1,4 +1,5 @@
 export const environment = {
   production: true,
-  enableTracing: false
+  enableTracing: false,
+  baseUrl: 'localhost:3000'
 }

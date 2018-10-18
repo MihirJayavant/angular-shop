@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core'
 import { Customer, CustomerType } from '../../models'
 import { Store } from '@ngrx/store'
-import { CustomerState, AddCustomer } from '../../store'
+import { CustomerState } from '../../store'
 import { FormBuilder, Validators, AbstractControl } from '@angular/forms'
 import { customerTypeNames } from '../../helpers'
 import { nameValidator } from './form.validators'
@@ -28,14 +28,6 @@ export class CustomerFormsPageComponent {
 
   public onSubmit() {
     const value = this.form.value
-    const c: Customer = {
-      id: 2,
-      name: value.name,
-      email: value.email,
-      mobile: value.mobile,
-      type: value.customerType
-    }
-    this.store.dispatch(new AddCustomer(c))
   }
 
   public onReset() {

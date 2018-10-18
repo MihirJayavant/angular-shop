@@ -12,8 +12,10 @@ import {
   CustomerDisplayPageComponent,
   components
 } from './components'
-import { reducers, dashboardName } from './store'
+import { reducers, dashboardName, effects } from './store'
 import { pipes } from './pipes'
+import { services } from './services'
+import { EffectsModule } from '@ngrx/effects'
 
 const routes: Routes = [
   {
@@ -34,8 +36,10 @@ const routes: Routes = [
     ReactiveFormsModule,
     RouterModule.forChild(routes),
     StoreModule.forFeature(dashboardName, reducers),
+    EffectsModule.forFeature(effects),
     SharedModule
   ],
-  declarations: [...components, ...pipes]
+  declarations: [...components, ...pipes],
+  providers: [...services]
 })
 export class DashboardModule {}

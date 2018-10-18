@@ -1,12 +1,24 @@
 import { Action } from '@ngrx/store'
 import { Customer } from '../../models'
 
-export const ADD_CUSTOMER = '[dashboard] add customer'
-
-export class AddCustomer implements Action {
-  public readonly type = ADD_CUSTOMER
-
-  constructor(public payload: Customer) {}
+export enum CustomerActionType {
+  LOAD_CUSTOMERS = '[dashboard] load customers',
+  LOAD_CUSTOMERS_SUCCESS = '[dashboard] load customers success',
+  LOAD_CUSTOMERS_FAILED = '[dashboard] load customers failed'
 }
 
-export type CustomerAction = AddCustomer
+export class LoadCustomer implements Action {
+  public readonly type = CustomerActionType.LOAD_CUSTOMERS
+}
+
+export class LoadCustomerSuccess implements Action {
+  public readonly type = CustomerActionType.LOAD_CUSTOMERS_SUCCESS
+
+  constructor(public payload: Customer[]) {}
+}
+
+export class LoadCustomerFailed implements Action {
+  public readonly type = CustomerActionType.LOAD_CUSTOMERS_FAILED
+}
+
+export type CustomerAction = LoadCustomer | LoadCustomerSuccess | LoadCustomerFailed

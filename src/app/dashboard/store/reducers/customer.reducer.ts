@@ -1,30 +1,41 @@
 import { List } from 'immutable'
 import { Customer, CustomerType } from '../../models'
-import { CustomerAction, ADD_CUSTOMER } from './../actions'
+import { CustomerAction, CustomerActionType, LoadCustomerSuccess } from './../actions'
 
 export interface CustomerState {
-  data: List<Customer>
+  customers: List<Customer>
+  isLoading: boolean
+  isLoaded: boolean
 }
 
 export const initalState: CustomerState = {
-  data: List<Customer>([
-    {
-      id: 1,
-      name: 'hello',
-      email: 'dk',
-      mobile: 123765,
-      type: CustomerType.lead
-    }
-  ])
+  customers: List<Customer>(),
+  isLoading: false,
+  isLoaded: false
 }
 
-export function reducer(
-  state = initalState,
-  action: CustomerAction
-): CustomerState {
+export function reducer(state = initalState, action: CustomerAction): CustomerState {
   switch (action.type) {
-    case ADD_CUSTOMER:
-      return { ...state, data: state.data.push(action.payload) }
+    case CustomerActionType.LOAD_CUSTOMERS:
+      return {
+        ...state,
+        isLoading: true
+      }
+
+    case CustomerActionType.LOAD_CUSTOMERS_SUCCESS:
+      return {
+        ...state,
+        customers: List(action.payload),
+        isLoaded: true,
+        isLoading: false
+      }
+
+    case CustomerActionType.LOAD_CUSTOMERS_FAILED:
+      return {
+        ...state,
+        isLoaded: false,
+        isLoading: false
+      }
   }
 
   return state
