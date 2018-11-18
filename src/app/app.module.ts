@@ -24,10 +24,9 @@ const routes: Routes = [{ path: '', pathMatch: 'full', redirectTo: 'home' }]
     RouterModule.forRoot(routes, environment.enableTracing ? { enableTracing: true } : {}),
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
-    StoreDevtoolsModule.instrument({
+    environment.production ? StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
-      logOnly: environment.production // Restrict extension to log-only mode
-    }),
+    }) : [] ,
     DashboardModule,
     HomeModule
   ],
