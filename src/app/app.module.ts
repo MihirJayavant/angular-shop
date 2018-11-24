@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http'
 import { StoreModule } from '@ngrx/store'
 import { EffectsModule } from '@ngrx/effects'
 import { StoreDevtoolsModule } from '@ngrx/store-devtools'
+import { StoreRouterConnectingModule, RouterStateSerializer } from '@ngrx/router-store'
 
 import { environment } from '../environments/environment'
 
@@ -13,6 +14,7 @@ import { AppComponent } from './app.component'
 import { DashboardModule } from './dashboard'
 import { HomeModule } from './home'
 import { HttpService } from './services'
+import { reducers, CustomSerializer } from './store'
 
 const routes: Routes = [{ path: '', pathMatch: 'full', redirectTo: 'home' }]
 
@@ -22,15 +24,18 @@ const routes: Routes = [{ path: '', pathMatch: 'full', redirectTo: 'home' }]
     BrowserModule,
     HttpClientModule,
     RouterModule.forRoot(routes, environment.enableTracing ? { enableTracing: true } : {}),
-    StoreModule.forRoot({}),
+    StoreModule.forRoot(reducers),
     EffectsModule.forRoot([]),
-    environment.production ? StoreDevtoolsModule.instrument({
-      maxAge: 25, // Retains last 25 states
-    }) : [] ,
+    StoreRouterConnectingModule,
+    environment.production
+      ? StoreDevtoolsModule.instrument({
+          maxAge: 25 // Retains last 25 states
+        })
+      : [],
     DashboardModule,
     HomeModule
   ],
-  providers: [HttpService],
+  providers: [HttpService, { provide: RouterStateSerializer, useClass: CustomSerializer }],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
