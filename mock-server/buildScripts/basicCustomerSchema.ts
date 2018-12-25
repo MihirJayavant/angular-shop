@@ -27,16 +27,20 @@ export const basicCustomerSchema = {
         type: 'string',
         faker: 'phone.phoneNumberFormat'
       },
+      avatar: {
+        type: 'string',
+        faker: 'image.avatar'
+      },
       dateCreated: {
         type: 'date',
         faker: {
           'custom.preDefineDate': []
         }
       },
-      bills: {
+      billsHistory: {
         type: 'array',
         minItems: 1,
-        maxItems: 30,
+        maxItems: 10,
         uniqueItems: true,
         items: {
           type: 'object',
@@ -60,6 +64,6 @@ export const basicCustomerSchema = {
         }
       }
     },
-    required: ['id', 'name', 'type', 'email', 'mobile', 'dateCreated', 'bills']
+    required: ['id', 'name', 'type', 'email', 'mobile', 'dateCreated', 'avatar', 'billsHistory']
   }
 }

@@ -31,6 +31,7 @@ export class Bill {
 export class BasicCustomer extends CustomerBase {
   public email = ''
   public mobile = 0
+  public billsHistory: Bill[] = []
 
   public readonly type = CustomerType.basic
 
