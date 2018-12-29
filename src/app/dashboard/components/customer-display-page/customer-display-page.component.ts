@@ -1,6 +1,8 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core'
+import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core'
 import { CustomerType } from '../../models'
 import { customerTypeNames } from '../../helpers'
+import { Store } from '@ngrx/store'
+import { DashboardState, getAllCustomers, LoadCustomer } from '../../store'
 
 @Component({
   selector: 'app-customer-display-page',
@@ -8,10 +10,17 @@ import { customerTypeNames } from '../../helpers'
   styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CustomerDisplayPageComponent {
+export class CustomerDisplayPageComponent implements OnInit {
   public searchText = ''
   public customerType = 'All'
   public customerTypeNames = customerTypeNames
+  public customers$ = this.store.select(getAllCustomers)
+
+  constructor(private store: Store<DashboardState>) {}
+
+  public ngOnInit(): void {
+    this.store.dispatch(new LoadCustomer())
+  }
 
   public onTypeChange(event: any) {
     const value = event.srcElement.value

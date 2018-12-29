@@ -19,8 +19,8 @@
 
   <app-customer-cards [search]="searchText" [type]="customerType"></app-customer-cards> -->
 
-  <shared-master-detail>
-    <shared-master>hello</shared-master>
+  <shared-master-detail [dataList]="customers$ | async">
+    <shared-master *sharedMasterItem="let item">{{ item.name }}</shared-master>
     <shared-detail>bye</shared-detail>
   </shared-master-detail>
 </div>

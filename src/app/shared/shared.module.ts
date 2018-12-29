@@ -7,16 +7,24 @@ import {
   DetailComponent
 } from './components'
 import { ActiveDirective } from './directives'
+import { MasterItemDirective } from './directives'
 
 @NgModule({
   imports: [CommonModule],
   declarations: [
     NavbarComponent,
-    ActiveDirective,
     MasterDetailComponent,
     MasterComponent,
-    DetailComponent
+    DetailComponent,
+    ActiveDirective,
+    MasterItemDirective
   ],
-  exports: [NavbarComponent, MasterDetailComponent, MasterComponent, DetailComponent]
+  exports: [
+    NavbarComponent,
+    MasterDetailComponent,
+    MasterComponent,
+    DetailComponent,
+    MasterItemDirective
+  ]
 })
 export class SharedModule {}
