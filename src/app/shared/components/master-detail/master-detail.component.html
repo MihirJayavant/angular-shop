@@ -1,13 +1,16 @@
 <div>
   <div class="columns">
-    <div class="column is-4">
+    <div class="column is-4 is-3-desktop master">
       <ng-content select="shared-master-caption"></ng-content>
-      <ng-container *ngFor="let item of dataList">
-        <ng-container
-          *ngTemplateOutlet="masterItemTemplate; context: { $implicit: item }"
-        ></ng-container>
-      </ng-container>
+      <div class="scroll-y" style="height: 91vh">
+        <ng-container *ngFor="let item of dataList">
+          <ng-container
+            *ngTemplateOutlet="masterItemTemplate; context: { $implicit: item }"
+          ></ng-container>
+          <div class="divider"></div>
+        </ng-container>
+      </div>
     </div>
-    <div class="column is-8"><ng-content select="shared-detail"></ng-content></div>
+    <div class="column is-8 is-9-desktop"><ng-content select="shared-detail"></ng-content></div>
   </div>
 </div>

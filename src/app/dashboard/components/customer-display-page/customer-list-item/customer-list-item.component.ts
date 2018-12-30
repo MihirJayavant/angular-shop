@@ -7,5 +7,10 @@ import { Customer } from 'src/app/dashboard/models'
 })
 export class CustomerListItemComponent {
   @Input()
-  public customer?: Customer
+  public set customer(c: Customer) {
+    c.avatar = c.avatar ? c.avatar : 'https://bulma.io/images/placeholders/64x64.png'
+    this._customer = c
+  }
+
+  public _customer?: Customer
 }
