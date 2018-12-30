@@ -8,6 +8,7 @@ import {
 } from './components'
 import { ActiveDirective } from './directives'
 import { MasterItemDirective } from './directives'
+import { MasterCaptionComponent } from './components/master-detail/master-caption/master-caption.component'
 
 @NgModule({
   imports: [CommonModule],
@@ -16,6 +17,7 @@ import { MasterItemDirective } from './directives'
     MasterDetailComponent,
     MasterComponent,
     DetailComponent,
+    MasterCaptionComponent,
     ActiveDirective,
     MasterItemDirective
   ],
@@ -24,6 +26,7 @@ import { MasterItemDirective } from './directives'
     MasterDetailComponent,
     MasterComponent,
     DetailComponent,
+    MasterCaptionComponent,
     MasterItemDirective
   ]
 })

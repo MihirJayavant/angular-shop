@@ -5,12 +5,20 @@ export enum CustomerType {
 export abstract class CustomerBase {
   public id: string
   public name: string
+  public avatar: string
   public readonly type: CustomerType
   public dateCreated: string
 
-  public constructor(id: string, name: string, type: CustomerType, dateCreated: string) {
+  public constructor(
+    id: string,
+    name: string,
+    avatar: string,
+    type: CustomerType,
+    dateCreated: string
+  ) {
     this.id = id
     this.name = name
+    this.avatar = avatar
     this.type = type
     this.dateCreated = dateCreated
   }
@@ -35,8 +43,14 @@ export class BasicCustomer extends CustomerBase {
 
   public readonly type = CustomerType.basic
 
-  public constructor(id: string, name: string, type: CustomerType, dateCreated: string) {
-    super(id, name, type, dateCreated)
+  public constructor(
+    id: string,
+    name: string,
+    avatar: string,
+    type: CustomerType,
+    dateCreated: string
+  ) {
+    super(id, name, avatar, type, dateCreated)
   }
 }
 
@@ -46,7 +60,7 @@ export class Lead extends CustomerBase {
   public readonly type = CustomerType.lead
 
   public constructor(id: string, name: string, type: CustomerType, dateCreated: string) {
-    super(id, name, type, dateCreated)
+    super(id, name, '', type, dateCreated)
   }
 }
 
