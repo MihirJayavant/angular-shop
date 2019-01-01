@@ -1,1 +1,10 @@
-<p>hi</p>
+<div class="hero is-primary" *ngIf="customer; else nothing">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">{{ customer!.name }}</h1>
+      <h2 class="subtitle">{{ customer!.type }}</h2>
+    </div>
+  </div>
+</div>
+
+<ng-template #nothing><div>Nothing Selected</div></ng-template>

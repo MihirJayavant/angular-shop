@@ -1,5 +1,10 @@
 <div>
-  <shared-master-detail [dataList]="customers$ | async">
+  <shared-master-detail
+    [dataList]="
+      customers$ | async | filterCustomerType: customerType | filterCustomerName: searchText
+    "
+    [reducedHeight]="105"
+  >
     <shared-master-caption>
       <div class="customer-caption">
         <div class="field has-addons">
@@ -23,8 +28,10 @@
       </div>
     </shared-master-caption>
     <shared-master *sharedMasterItem="let item">
-      <app-customer-list-item [customer]="item"></app-customer-list-item>
+      <app-customer-list-item [customer]="item" (select)="onClick($event)"></app-customer-list-item>
     </shared-master>
-    <shared-detail>bye</shared-detail>
+    <shared-detail>
+      <app-customer-details [customer]="selectedCustomer"></app-customer-details>
+    </shared-detail>
   </shared-master-detail>
 </div>

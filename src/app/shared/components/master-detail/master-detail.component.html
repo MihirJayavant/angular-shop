@@ -1,8 +1,8 @@
 <div>
-  <div class="columns">
+  <div class="columns is-gapless">
     <div class="column is-4 is-3-desktop master">
       <ng-content select="shared-master-caption"></ng-content>
-      <div class="scroll-y" [sharedHeight]="0">
+      <div class="scroll-y" [sharedHeight]="reducedHeight">
         <ng-container *ngFor="let item of dataList">
           <ng-container
             *ngTemplateOutlet="masterItemTemplate; context: { $implicit: item }"

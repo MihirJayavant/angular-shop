@@ -9,5 +9,8 @@ export class MasterDetailComponent {
   @Input()
   dataList: any[] = []
 
+  @Input()
+  reducedHeight = 0
+
   @ContentChild(MasterItemDirective, { read: TemplateRef }) masterItemTemplate: any
 }

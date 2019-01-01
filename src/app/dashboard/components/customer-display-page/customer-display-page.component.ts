@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core'
-import { CustomerType } from '../../models'
+import { CustomerType, Customer } from '../../models'
 import { customerTypeNames } from '../../helpers'
 import { Store } from '@ngrx/store'
 import { DashboardState, getAllCustomers, LoadCustomer } from '../../store'
@@ -15,6 +15,7 @@ export class CustomerDisplayPageComponent implements OnInit {
   public customerType = 'All'
   public customerTypeNames = customerTypeNames
   public customers$ = this.store.select(getAllCustomers)
+  public selectedCustomer: Customer | null = null
 
   constructor(private store: Store<DashboardState>) {}
 
@@ -36,5 +37,10 @@ export class CustomerDisplayPageComponent implements OnInit {
         this.customerType = CustomerType.lead
         break
     }
+  }
+
+  public onClick(item: Customer) {
+    console.log(item)
+    this.selectedCustomer = item
   }
 }
