@@ -6,7 +6,7 @@ import {
   MasterComponent,
   DetailComponent
 } from './components'
-import { ActiveDirective } from './directives'
+import { ActiveDirective, HeightDirective } from './directives'
 import { MasterItemDirective } from './directives'
 import { MasterCaptionComponent } from './components/master-detail/master-caption/master-caption.component'
 
@@ -19,7 +19,8 @@ import { MasterCaptionComponent } from './components/master-detail/master-captio
     DetailComponent,
     MasterCaptionComponent,
     ActiveDirective,
-    MasterItemDirective
+    MasterItemDirective,
+    HeightDirective
   ],
   exports: [
     NavbarComponent,
@@ -27,7 +28,8 @@ import { MasterCaptionComponent } from './components/master-detail/master-captio
     MasterComponent,
     DetailComponent,
     MasterCaptionComponent,
-    MasterItemDirective
+    MasterItemDirective,
+    HeightDirective
   ]
 })
 export class SharedModule {}
