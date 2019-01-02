@@ -40,7 +40,6 @@ export class CustomerDisplayPageComponent implements OnInit {
   }
 
   public onClick(item: Customer) {
-    console.log(item)
     this.selectedCustomer = item
   }
 }

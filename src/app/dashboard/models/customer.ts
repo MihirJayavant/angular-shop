@@ -57,10 +57,9 @@ export class BasicCustomer extends CustomerBase {
 export class Lead extends CustomerBase {
   public email = ''
   public mobile = 0
-  public readonly type = CustomerType.lead
 
-  public constructor(id: string, name: string, type: CustomerType, dateCreated: string) {
-    super(id, name, '', type, dateCreated)
+  public constructor(id: string, name: string, dateCreated: string) {
+    super(id, name, '', CustomerType.lead, dateCreated)
   }
 }
 
