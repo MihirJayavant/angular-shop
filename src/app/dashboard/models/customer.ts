@@ -41,16 +41,8 @@ export class BasicCustomer extends CustomerBase {
   public mobile = 0
   public billsHistory: Bill[] = []
 
-  public readonly type = CustomerType.basic
-
-  public constructor(
-    id: string,
-    name: string,
-    avatar: string,
-    type: CustomerType,
-    dateCreated: string
-  ) {
-    super(id, name, avatar, type, dateCreated)
+  public constructor(id: string, name: string, avatar: string, dateCreated: string) {
+    super(id, name, avatar, CustomerType.basic, dateCreated)
   }
 }
 
