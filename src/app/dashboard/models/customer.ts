@@ -5,22 +5,25 @@ export enum CustomerType {
 export abstract class CustomerBase {
   public id: string
   public name: string
-  public avatar: string
+  public email: string
+  public mobile: string
   public readonly type: CustomerType
   public dateCreated: string
 
   public constructor(
     id: string,
     name: string,
-    avatar: string,
+    email: string,
+    mobile: string,
     type: CustomerType,
     dateCreated: string
   ) {
     this.id = id
     this.name = name
-    this.avatar = avatar
     this.type = type
     this.dateCreated = dateCreated
+    this.email = email
+    this.mobile = mobile
   }
 }
 
@@ -37,22 +40,32 @@ export class Bill {
 }
 
 export class BasicCustomer extends CustomerBase {
-  public email = ''
-  public mobile = 0
+  public avatar: string
   public billsHistory: Bill[] = []
 
-  public constructor(id: string, name: string, avatar: string, dateCreated: string) {
-    super(id, name, avatar, CustomerType.basic, dateCreated)
+  public constructor(
+    id: string,
+    name: string,
+    email: string,
+    mobile: string,
+    avatar: string,
+    billsHistory: Bill[],
+    dateCreated: string
+  ) {
+    super(id, name, email, mobile, CustomerType.basic, dateCreated)
+    this.avatar = avatar
+    this.billsHistory = billsHistory
   }
 }
 
 export class Lead extends CustomerBase {
-  public email = ''
-  public mobile = 0
-
-  public constructor(id: string, name: string, dateCreated: string) {
-    super(id, name, '', CustomerType.lead, dateCreated)
+  public constructor(id: string, name: string, email: string, mobile: string, dateCreated: string) {
+    super(id, name, email, mobile, CustomerType.lead, dateCreated)
   }
 }
 
 export type Customer = BasicCustomer | Lead
+
+export function isBasicCustomer(customer: Customer): customer is BasicCustomer {
+  return (<BasicCustomer>customer).avatar !== undefined
+}

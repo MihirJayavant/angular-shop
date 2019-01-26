@@ -16,12 +16,6 @@ export class CustomerEffect {
     ofType(CustomerActionType.LOAD_CUSTOMERS),
     switchMap(() =>
       this.customerService.getCustomers().pipe(
-        map(customers =>
-          customers.map(c => ({
-            ...c,
-            avatar: c.avatar ? c.avatar : 'https://bulma.io/images/placeholders/128x128.png'
-          }))
-        ),
         map(customers => new LoadCustomerSuccess(customers)),
         catchError(error => of(new LoadCustomerFailed()))
       )

@@ -1,11 +1,11 @@
 <div class="customer-item" (click)="onclick()">
   <div class="columns">
     <div class="column is-narrow">
-      <figure class="image is-48x48"><img class="is-rounded" [src]="customer!.avatar" /></figure>
+      <figure class="image is-48x48"><img class="is-rounded" [src]="_customer.avatar" /></figure>
     </div>
     <div class="column">
-      <span>{{ customer!.name }}</span> <br />
-      <span>{{ customer!.type }}</span>
+      <span>{{ _customer.name }}</span> <br />
+      <span>{{ _customer.type }}</span>
     </div>
   </div>
 </div>

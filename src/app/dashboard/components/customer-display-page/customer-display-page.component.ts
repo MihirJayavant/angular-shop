@@ -1,8 +1,9 @@
 import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core'
 import { CustomerType, Customer } from '../../models'
-import { customerTypeNames } from '../../helpers'
+import { customerTypeNames } from '../../dashboard.helpers'
 import { Store } from '@ngrx/store'
 import { DashboardState, getAllCustomers, LoadCustomer } from '../../store'
+import { CustomerViewModel } from '../../view-models'
 
 @Component({
   selector: 'app-customer-display-page',
@@ -13,9 +14,9 @@ import { DashboardState, getAllCustomers, LoadCustomer } from '../../store'
 export class CustomerDisplayPageComponent implements OnInit {
   public searchText = ''
   public customerType = 'All'
-  public customerTypeNames = customerTypeNames
+  public customerTypeNames = ['All', ...customerTypeNames]
   public customers$ = this.store.select(getAllCustomers)
-  public selectedCustomer: Customer | null = null
+  public selectedCustomer: CustomerViewModel | null = null
 
   constructor(private store: Store<DashboardState>) {}
 
@@ -39,7 +40,7 @@ export class CustomerDisplayPageComponent implements OnInit {
     }
   }
 
-  public onClick(item: Customer) {
+  public onClick(item: CustomerViewModel) {
     this.selectedCustomer = item
   }
 }

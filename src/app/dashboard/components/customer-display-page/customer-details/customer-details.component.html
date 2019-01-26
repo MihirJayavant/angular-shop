@@ -1,8 +1,8 @@
-<div class="hero is-primary" *ngIf="customer; else nothing">
+<div class="hero is-primary" *ngIf="isLoaded; else nothing">
   <div class="hero-body">
     <div class="container">
-      <h1 class="title">{{ customer!.name }}</h1>
-      <h2 class="subtitle">{{ customer!.type }}</h2>
+      <h1 class="title">{{ _customer.name }}</h1>
+      <h2 class="subtitle">{{ _customer.type }}</h2>
     </div>
   </div>
 </div>

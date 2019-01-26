@@ -1,74 +1,36 @@
 <div class="columns is-centered">
   <div class="column is-half">
-
-
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <div class="field">
         <label class="label">Name</label>
         <div class="control has-icons-left">
-          <input class="input" type="text" placeholder="Full Name" formControlName="name">
-          <span class="icon is-small is-left">
-            <i class="fas fa-user"></i>
-          </span>
+          <input class="input" type="text" placeholder="Full Name" formControlName="name" />
+          <span class="icon is-small is-left"> <i class="fas fa-user"></i> </span>
         </div>
       </div>
 
       <div class="field">
         <label class="label">Email</label>
         <div class="control has-icons-left">
-          <input class="input" type="email" placeholder="Email" formControlName="email">
-          <span class="icon is-small is-left">
-            <i class="fas fa-envelope"></i>
-          </span>
+          <input class="input" type="email" placeholder="Email" formControlName="email" />
+          <span class="icon is-small is-left"> <i class="fas fa-envelope"></i> </span>
         </div>
       </div>
 
       <div class="field">
         <label class="label">Mobile</label>
         <div class="control has-icons-left">
-          <input class="input" type="number" placeholder="Mobile Number" formControlName="mobile">
-          <span class="icon is-small is-left">
-            <i class="fas fa-mobile-alt"></i>
-          </span>
-        </div>
-      </div>
-
-      <div class="field">
-        <label class="label">Customer Type</label>
-        <div class="control">
-          <div class="select">
-            <select formControlName="customerType" (change)="onDropDownChange()">
-              <option>Customer</option>
-              <option>Lead</option>
-            </select>
-          </div>
-        </div>
-      </div>
-
-      <div class="field">
-        <label class="label">Bill No.</label>
-        <div class="control">
-          <input class="input" type="number" placeholder="Bill Number" formControlName="billNumber">
-        </div>
-      </div>
-
-      <div class="field">
-        <label class="label">Bill Amount</label>
-        <div class="control">
-          <input class="input" type="number" placeholder="Bill Amount" formControlName="billAmount">
+          <input class="input" type="text" placeholder="Mobile Number" formControlName="mobile" />
+          <span class="icon is-small is-left"> <i class="fas fa-mobile-alt"></i> </span>
         </div>
       </div>
 
       <div class="field is-grouped">
-        <div class="control">
-          <button type="submit" class="button is-success">Submit</button>
-        </div>
+        <div class="control"><button type="submit" class="button is-success">Submit</button></div>
         <div class="control">
           <button type="reset" class="button is-danger" (click)="onReset()">Reset</button>
         </div>
       </div>
-
     </form>
-
   </div>
 </div>

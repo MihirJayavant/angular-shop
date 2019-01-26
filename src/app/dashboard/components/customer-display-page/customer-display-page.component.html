@@ -19,7 +19,6 @@
           <p class="control">
             <span class="select">
               <select (change)="onTypeChange($event)">
-                <option selected value="All">All</option>
                 <option *ngFor="let type of customerTypeNames" [value]="type"> {{ type }} </option>
               </select>
             </span>
