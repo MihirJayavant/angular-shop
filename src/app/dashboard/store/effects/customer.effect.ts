@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core'
-import { CustomerService } from '../../services'
+import { CustomerService } from '../../services/customer.service'
 
 import { Effect, Actions, ofType } from '@ngrx/effects'
 import { CustomerActionType, LoadCustomerSuccess, LoadCustomerFailed } from '../actions'

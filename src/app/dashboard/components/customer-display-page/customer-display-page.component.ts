@@ -1,9 +1,8 @@
 import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core'
-import { CustomerType, Customer } from '../../models'
+import { CustomerType } from '../../models'
 import { customerTypeNames } from '../../dashboard.helpers'
-import { Store } from '@ngrx/store'
-import { DashboardState, getAllCustomers, LoadCustomer } from '../../store'
 import { CustomerViewModel } from '../../view-models'
+import { DataService } from '../../services'
 
 @Component({
   selector: 'app-customer-display-page',
@@ -15,13 +14,13 @@ export class CustomerDisplayPageComponent implements OnInit {
   public searchText = ''
   public customerType = 'All'
   public customerTypeNames = ['All', ...customerTypeNames]
-  public customers$ = this.store.select(getAllCustomers)
+  public customers$ = this.dataService.getCustomers()
   public selectedCustomer: CustomerViewModel | null = null
 
-  constructor(private store: Store<DashboardState>) {}
+  constructor(private dataService: DataService) {}
 
   public ngOnInit(): void {
-    this.store.dispatch(new LoadCustomer())
+    this.dataService.loadCustomers()
   }
 
   public onTypeChange(event: any) {
