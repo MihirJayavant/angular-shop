@@ -1,28 +1,29 @@
-import { CustomerType, Bill, Customer, isBasicCustomer, Lead } from '../models'
+import { CustomerType, Bill, Customer, Lead } from '../models'
 
-export class CustomerViewModel {
-  public id: string
-  public name: string
-  public email: string
-  public mobile: string
-  public readonly type: CustomerType
-  public dateCreated: string
-  public avatar: string
-  public billsHistory?: Bill[]
-
-  public constructor(customer: Customer) {
-    this.id = customer.id
-    this.name = customer.name
-    this.email = customer.email
-    this.mobile = customer.mobile
-    this.type = customer.type
-    this.dateCreated = customer.dateCreated
-
-    if (isBasicCustomer(customer)) this.avatar = customer.avatar
-    else this.avatar = 'https://bulma.io/images/placeholders/128x128.png'
-  }
+export interface CustomerViewModel {
+  id: string
+  name: string
+  email: string
+  mobile: string
+  type: CustomerType
+  dateCreated: string
+  avatar: string
+  billsHistory?: Bill[]
 }
 
-export function getInitialState() {
-  return new CustomerViewModel(new Lead('', '', '', '', ''))
+export function convertToCustomerViewModel(customer: Customer): CustomerViewModel {
+  const temp: CustomerViewModel = {
+    id: customer.id,
+    name: customer.name,
+    email: customer.email,
+    mobile: customer.mobile,
+    type: customer.type,
+    dateCreated: customer.dateCreated,
+    avatar: 'https://bulma.io/images/placeholders/128x128.png'
+  }
+  if (customer.type === CustomerType.basic) {
+    temp.avatar = customer.avatar
+    temp.billsHistory = customer.billsHistory
+  }
+  return temp
 }

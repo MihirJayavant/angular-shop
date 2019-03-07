@@ -1,12 +1,12 @@
 import { Component, Input } from '@angular/core'
-import { CustomerViewModel, getInitialState } from 'src/app/dashboard/view-models'
+import { CustomerViewModel } from 'src/app/dashboard/view-models'
 
 @Component({
   selector: 'app-customer-details',
   templateUrl: './customer-details.component.html'
 })
 export class CustomerDetailsComponent {
-  public _customer: CustomerViewModel = getInitialState()
+  public _customer!: CustomerViewModel
   public isLoaded = false
 
   @Input()
