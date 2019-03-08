@@ -11,12 +11,14 @@ import { StoreRouterConnectingModule, RouterStateSerializer } from '@ngrx/router
 import { environment } from '../environments/environment'
 
 import { AppComponent } from './app.component'
-import { DashboardModule } from './dashboard'
 import { HomeModule } from './home'
 import { HttpService } from './services'
 import { reducers, CustomSerializer } from './store'
 
-const routes: Routes = [{ path: '', pathMatch: 'full', redirectTo: 'home' }]
+const routes: Routes = [
+  { path: '', pathMatch: 'full', redirectTo: 'home' },
+  { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule' }
+]
 
 @NgModule({
   declarations: [AppComponent],
@@ -32,7 +34,6 @@ const routes: Routes = [{ path: '', pathMatch: 'full', redirectTo: 'home' }]
           maxAge: 25 // Retains last 25 states
         })
       : [],
-    DashboardModule,
     HomeModule
   ],
   providers: [HttpService, { provide: RouterStateSerializer, useClass: CustomSerializer }],
