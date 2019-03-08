@@ -10,7 +10,9 @@ import { List } from 'immutable'
 export enum CustomerActionType {
   LOAD = '[dashboard] load customers',
   SUCCESS = '[dashboard] load customers success',
-  ERROR = '[dashboard] load customers failed'
+  ERROR = '[dashboard] load customers failed',
+  POST = '[dashboard] post customer',
+  POSTSUCCESS = '[dashboard] post customer success'
 }
 
 export class LoadCustomer implements IAsyncDataLoadAction {
@@ -27,5 +29,17 @@ export class LoadCustomerFailed implements IAsyncDataErrorAction {
   public readonly type = CustomerActionType.ERROR
   constructor(public error: string) {}
 }
+export class PostCustomer implements Action {
+  public readonly type = CustomerActionType.POST
+  constructor(public payload: Customer) {}
+}
+export class PostCustomerSuccess implements Action {
+  public readonly type = CustomerActionType.POSTSUCCESS
+}
 
-export type CustomerAction = LoadCustomer | LoadCustomerSuccess | LoadCustomerFailed
+export type CustomerAction =
+  | LoadCustomer
+  | LoadCustomerSuccess
+  | LoadCustomerFailed
+  | PostCustomer
+  | PostCustomerSuccess

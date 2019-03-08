@@ -1,7 +1,13 @@
 import { Injectable } from '@angular/core'
 
 import { Effect, Actions, ofType } from '@ngrx/effects'
-import { CustomerActionType, LoadCustomerSuccess, LoadCustomerFailed } from '../actions'
+import {
+  CustomerActionType,
+  LoadCustomerSuccess,
+  LoadCustomerFailed,
+  PostCustomer,
+  PostCustomerSuccess
+} from '../actions'
 
 import { switchMap, map, catchError } from 'rxjs/operators'
 import { of } from 'rxjs'
@@ -24,7 +30,23 @@ export class CustomerEffect {
     )
   )
 
+  @Effect()
+  public postCustomer$ = this.actions$.pipe(
+    ofType(CustomerActionType.POST),
+    map((action: PostCustomer) => action.payload),
+    switchMap(payload =>
+      this.postCustomers(payload).pipe(
+        map(_ => new PostCustomerSuccess()),
+        catchError(error => of(''))
+      )
+    )
+  )
+
   public getCustomers() {
     return this.http.get<Customer[]>('/customer')
+  }
+
+  public postCustomers(customer: Customer) {
+    return this.http.post<any, Customer>('/customer', customer)
   }
 }

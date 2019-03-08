@@ -3,14 +3,31 @@ import { Customer } from '../../models'
 import { CustomerAction, CustomerActionType } from './../actions'
 import { IAsyncData, getInitialState, withReducer } from 'src/app/models'
 
-export interface CustomerState extends IAsyncData<List<Customer>> {}
-
-export const initalState: CustomerState = {
-  ...getInitialState<List<Customer>>(List<Customer>())
+export interface CustomerState extends IAsyncData<List<Customer>> {
+  postLoading: boolean
 }
 
-function baseReducer(state = initalState): CustomerState {
-  return state
+export const initalState: CustomerState = {
+  ...getInitialState<List<Customer>>(List<Customer>()),
+  postLoading: false
+}
+
+function baseReducer(state = initalState, action: CustomerAction): CustomerState {
+  switch (action.type) {
+    case CustomerActionType.POST:
+      return {
+        ...state,
+        postLoading: true
+      }
+    case CustomerActionType.POSTSUCCESS:
+      return {
+        ...state,
+        postLoading: false
+      }
+
+    default:
+      return state
+  }
 }
 
 export function reducer(state = initalState, action: CustomerAction): CustomerState {
