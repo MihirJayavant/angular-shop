@@ -22,8 +22,12 @@ const routes: Routes = [
     path: '',
     component: DashboardComponent,
     children: [
-      { path: 'forms', component: CustomerFormsPageComponent },
-      { path: 'display', component: CustomerDisplayPageComponent },
+      { path: 'forms', component: CustomerFormsPageComponent, data: { animation: 'FormsPage' } },
+      {
+        path: 'display',
+        component: CustomerDisplayPageComponent,
+        data: { animation: 'DisplayPage' }
+      },
       { path: '', pathMatch: 'full', redirectTo: 'forms' }
     ]
   }
@@ -39,7 +43,7 @@ const routes: Routes = [
     EffectsModule.forFeature(effects),
     SharedModule
   ],
-  declarations: [...components, ...pipes],
+  declarations: [DashboardComponent, ...components, ...pipes],
   providers: [...services]
 })
 export class DashboardModule {}

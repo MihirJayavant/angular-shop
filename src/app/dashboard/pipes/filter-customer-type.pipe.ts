@@ -11,8 +11,6 @@ export class FilterCustomerTypePipe implements PipeTransform {
       return List()
     }
 
-    console.log({ value, type })
-
     switch (type) {
       case 'All':
         return value
