@@ -1,42 +1,22 @@
 import { List } from 'immutable'
-import { Customer, CustomerType } from '../../models'
-import { CustomerAction, CustomerActionType, LoadCustomerSuccess } from './../actions'
+import { Customer } from '../../models'
+import { CustomerAction, CustomerActionType } from './../actions'
+import { IAsyncData, getInitialState, withReducer } from 'src/app/models'
 
-export interface CustomerState {
-  customers: List<Customer>
-  isLoading: boolean
-  isLoaded: boolean
-}
+export interface CustomerState extends IAsyncData<List<Customer>> {}
 
 export const initalState: CustomerState = {
-  customers: List<Customer>(),
-  isLoading: false,
-  isLoaded: false
+  ...getInitialState<List<Customer>>(List<Customer>())
+}
+
+function baseReducer(state = initalState): CustomerState {
+  return state
 }
 
 export function reducer(state = initalState, action: CustomerAction): CustomerState {
-  switch (action.type) {
-    case CustomerActionType.LOAD_CUSTOMERS:
-      return {
-        ...state,
-        isLoading: true
-      }
-
-    case CustomerActionType.LOAD_CUSTOMERS_SUCCESS:
-      return {
-        ...state,
-        customers: List(action.payload),
-        isLoaded: true,
-        isLoading: false
-      }
-
-    case CustomerActionType.LOAD_CUSTOMERS_FAILED:
-      return {
-        ...state,
-        isLoaded: false,
-        isLoading: false
-      }
-  }
-
-  return state
+  return withReducer(baseReducer, {
+    errorActionType: CustomerActionType.ERROR,
+    loadActionType: CustomerActionType.LOAD,
+    successActionType: CustomerActionType.SUCCESS
+  })(state, action)
 }

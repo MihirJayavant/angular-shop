@@ -1,24 +1,31 @@
 import { Action } from '@ngrx/store'
 import { Customer } from '../../models'
+import {
+  IAsyncDataLoadAction,
+  IAsyncDataSuccessAction,
+  IAsyncDataErrorAction
+} from 'src/app/models'
+import { List } from 'immutable'
 
 export enum CustomerActionType {
-  LOAD_CUSTOMERS = '[dashboard] load customers',
-  LOAD_CUSTOMERS_SUCCESS = '[dashboard] load customers success',
-  LOAD_CUSTOMERS_FAILED = '[dashboard] load customers failed'
+  LOAD = '[dashboard] load customers',
+  SUCCESS = '[dashboard] load customers success',
+  ERROR = '[dashboard] load customers failed'
 }
 
-export class LoadCustomer implements Action {
-  public readonly type = CustomerActionType.LOAD_CUSTOMERS
+export class LoadCustomer implements IAsyncDataLoadAction {
+  public readonly type = CustomerActionType.LOAD
 }
 
-export class LoadCustomerSuccess implements Action {
-  public readonly type = CustomerActionType.LOAD_CUSTOMERS_SUCCESS
+export class LoadCustomerSuccess implements IAsyncDataSuccessAction<List<Customer>> {
+  public readonly type = CustomerActionType.SUCCESS
 
-  constructor(public payload: Customer[]) {}
+  constructor(public data: List<Customer>) {}
 }
 
-export class LoadCustomerFailed implements Action {
-  public readonly type = CustomerActionType.LOAD_CUSTOMERS_FAILED
+export class LoadCustomerFailed implements IAsyncDataErrorAction {
+  public readonly type = CustomerActionType.ERROR
+  constructor(public error: string) {}
 }
 
 export type CustomerAction = LoadCustomer | LoadCustomerSuccess | LoadCustomerFailed

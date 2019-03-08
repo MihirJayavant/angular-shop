@@ -3,12 +3,12 @@
     <div class="column is-4 is-3-desktop master">
       <ng-content select="shared-master-caption"></ng-content>
       <div class="scroll-y" [sharedHeight]="reducedHeight">
-        <ng-container *ngFor="let item of dataList">
+        <div *ngFor="let item of dataList" @items>
           <ng-container
             *ngTemplateOutlet="masterItemTemplate; context: { $implicit: item }"
           ></ng-container>
           <div class="divider"></div>
-        </ng-container>
+        </div>
       </div>
     </div>
     <div class="column is-8 is-9-desktop"><ng-content select="shared-detail"></ng-content></div>
