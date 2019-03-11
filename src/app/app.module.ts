@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser'
 import { NgModule } from '@angular/core'
-import { Routes, RouterModule } from '@angular/router'
+import { Routes, RouterModule, PreloadAllModules } from '@angular/router'
 import { HttpClientModule } from '@angular/common/http'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
@@ -18,7 +18,7 @@ import { reducers, CustomSerializer } from './store'
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
-  { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule' }
+  { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule',  }
 ]
 
 @NgModule({
@@ -27,7 +27,7 @@ const routes: Routes = [
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    RouterModule.forRoot(routes, environment.enableTracing ? { enableTracing: true } : {}),
+    RouterModule.forRoot(routes, {enableTracing: environment.enableTracing, preloadingStrategy: PreloadAllModules } ),
     StoreModule.forRoot(reducers),
     EffectsModule.forRoot([]),
     StoreRouterConnectingModule,
