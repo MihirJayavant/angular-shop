@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --port 5000",
+    "start:sw": "npm run build && npm run server:sw",
     "build": "ng build --prod",
     "build:qa": "ng build --configuration=qa",
     "test": "jest",
@@ -13,8 +14,9 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "generate-mock-api-data": "ts-node mock-server/buildScripts/generateData.ts",
-    "preserver": "npm run generate-mock-api-data",
-    "server": "json-server --watch mock-server/buildScripts/db.json --port 3000",
+    "preserver:mock": "npm run generate-mock-api-data",
+    "server:mock": "json-server --watch mock-server/buildScripts/db.json --port 3000",
+    "server:sw": "http-server -p 5100 -c-1 dist/Shop -P http://10.0.75.1:5100 -o",
     "doc": "compodoc -p src/tsconfig.app.json -s"
   },
   "jest": {
@@ -36,7 +38,9 @@
     "@angular/http": "^7.2.8",
     "@angular/platform-browser": "^7.2.8",
     "@angular/platform-browser-dynamic": "^7.2.8",
+    "@angular/pwa": "0.12",
     "@angular/router": "^7.2.8",
+    "@angular/service-worker": "^7.2.8",
     "@ngrx/effects": "^7.3.0",
     "@ngrx/entity": "^7.3.0",
     "@ngrx/router-store": "^7.3.0",
@@ -60,6 +64,7 @@
     "chalk": "^2.4.2",
     "codelyzer": "~4.5.0",
     "faker": "^4.1.0",
+    "http-server": "^0.11.1",
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",
     "jest": "^23.6.0",

@@ -14,7 +14,8 @@ import { environment } from '../environments/environment'
 import { AppComponent } from './app.component'
 import { HomeModule } from './home'
 import { HttpService } from './services'
-import { reducers, CustomSerializer } from './store'
+import { reducers, CustomSerializer } from './store';
+import { ServiceWorkerModule } from '@angular/service-worker'
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -36,7 +37,8 @@ const routes: Routes = [
           maxAge: 25 // Retains last 25 states
         })
       : [],
-    HomeModule
+    HomeModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [HttpService, { provide: RouterStateSerializer, useClass: CustomSerializer }],
   bootstrap: [AppComponent]
