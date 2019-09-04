@@ -25,21 +25,21 @@ const basic: BasicCustomer = {
 const customerList: Customer[] = [lead, basic]
 const pipe = new FilterCustomerTypePipe()
 
-test(`that all (2) customers are returned when input is 'All'`, () => {
+it(`that all (2) customers are returned when input is 'All'`, () => {
   // Act
   const output = pipe.transform(List(customerList), 'All')
   // Assert
   expect(output.count()).toBe(2)
 })
 
-test(`that all (1) customers are returned when input is '${CustomerType.lead}'`, () => {
+it(`that all (1) customers are returned when input is '${CustomerType.lead}'`, () => {
   // Act
   const output = pipe.transform(List(customerList), CustomerType.lead)
   // Assert
   expect(output.count()).toBe(1)
 })
 
-test(`that all (1) customers are returned when input is '${CustomerType.basic}'`, () => {
+it(`that all (1) customers are returned when input is '${CustomerType.basic}'`, () => {
   // Act
   const output = pipe.transform(List(customerList), CustomerType.basic)
   // Assert

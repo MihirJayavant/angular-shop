@@ -33,5 +33,5 @@ export class MasterDetailComponent {
   @Input()
   reducedHeight = 0
 
-  @ContentChild(MasterItemDirective, { read: TemplateRef }) masterItemTemplate: any
+  @ContentChild(MasterItemDirective, { read: TemplateRef, static: true }) masterItemTemplate: any
 }

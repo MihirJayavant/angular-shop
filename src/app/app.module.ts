@@ -14,12 +14,12 @@ import { environment } from '../environments/environment'
 import { AppComponent } from './app.component'
 import { HomeModule } from './home'
 import { HttpService } from './services'
-import { reducers, CustomSerializer } from './store';
+import { reducers, CustomSerializer } from './store'
 import { ServiceWorkerModule } from '@angular/service-worker'
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
-  { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule',  }
+  { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule' }
 ]
 
 @NgModule({
@@ -28,10 +28,10 @@ const routes: Routes = [
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    RouterModule.forRoot(routes, {enableTracing: environment.enableTracing, preloadingStrategy: PreloadAllModules } ),
+    RouterModule.forRoot(routes, { enableTracing: environment.enableTracing }),
     StoreModule.forRoot(reducers),
     EffectsModule.forRoot([]),
-    StoreRouterConnectingModule,
+    StoreRouterConnectingModule.forRoot(),
     environment.production
       ? StoreDevtoolsModule.instrument({
           maxAge: 25 // Retains last 25 states
