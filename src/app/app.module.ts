@@ -23,10 +23,10 @@ const routes: Routes = [{ path: '', pathMatch: 'full', redirectTo: 'home' }]
   imports: [
     BrowserModule,
     HttpClientModule,
-    RouterModule.forRoot(routes, environment.enableTracing ? { enableTracing: true } : {}),
+    RouterModule.forRoot(routes, { enableTracing: environment.enableTracing }),
     StoreModule.forRoot(reducers),
     EffectsModule.forRoot([]),
-    StoreRouterConnectingModule,
+    StoreRouterConnectingModule.forRoot(),
     environment.production
       ? StoreDevtoolsModule.instrument({
           maxAge: 25 // Retains last 25 states
