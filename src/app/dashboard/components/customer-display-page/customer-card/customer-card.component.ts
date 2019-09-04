@@ -1,9 +1,4 @@
-import {
-  Component,
-  Input,
-  OnInit,
-  ChangeDetectionStrategy
-} from '@angular/core'
+import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core'
 import { Customer } from '../../../models'
 
 @Component({
@@ -14,7 +9,7 @@ import { Customer } from '../../../models'
 })
 export class CustomerCardComponent implements OnInit {
   @Input()
-  public customer: Customer | null = null
+  public customer!: Customer
 
   public title = ''
 

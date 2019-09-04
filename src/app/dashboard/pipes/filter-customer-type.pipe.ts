@@ -6,10 +6,7 @@ import { List } from 'immutable'
   name: 'filterCustomerType'
 })
 export class FilterCustomerTypePipe implements PipeTransform {
-  public transform(
-    value: List<Customer>,
-    type: CustomerType | 'All'
-  ): List<Customer> {
+  public transform(value: List<Customer> | null, type: CustomerType | string): List<Customer> {
     if (value === null) {
       return List()
     }
@@ -18,13 +15,11 @@ export class FilterCustomerTypePipe implements PipeTransform {
       case 'All':
         return value
       case CustomerType.basic:
-        return value
-          .filter(p => (!!p ? p.type === CustomerType.basic : false))
-          .toList()
+        return value.filter(p => (!!p ? p.type === CustomerType.basic : false)).toList()
       case CustomerType.lead:
+        return value.filter(p => (!!p ? p.type === CustomerType.lead : false)).toList()
+      default:
         return value
-          .filter(p => (!!p ? p.type === CustomerType.lead : false))
-          .toList()
     }
   }
 }
