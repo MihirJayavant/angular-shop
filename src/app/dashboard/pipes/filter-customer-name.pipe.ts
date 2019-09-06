@@ -6,7 +6,7 @@ import { List } from 'immutable'
   name: 'filterCustomerName'
 })
 export class FilterCustomerNamePipe implements PipeTransform {
-  public transform(value: List<Customer>, searchText: string): List<Customer> {
+  public transform(value: List<Customer> | null, searchText: string): List<Customer> {
     searchText = searchText.trim().toLowerCase()
 
     if (value == null) {
