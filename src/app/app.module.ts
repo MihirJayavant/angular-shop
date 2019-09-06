@@ -17,9 +17,12 @@ import { HttpService } from './services'
 import { reducers, CustomSerializer } from './store'
 import { ServiceWorkerModule } from '@angular/service-worker'
 
-const routes: Routes = [
+export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
-  { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule' }
+  {
+    path: 'dashboard',
+    loadChildren: () => import('./dashboard/dashboard.module').then(mod => mod.DashboardModule)
+  }
 ]
 
 @NgModule({

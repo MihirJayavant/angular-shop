@@ -13,7 +13,7 @@
     "test:coverage": "jest --coverage",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "generate-mock-api-data": "ts-node mock-server/buildScripts/generateData.ts",
+    "generate-mock-api-data": "tsc mock-server/buildScripts/generateData.ts && node mock-server/buildScripts/generateData.js",
     "preserver:mock": "npm run generate-mock-api-data",
     "server:mock": "json-server --watch mock-server/buildScripts/db.json --port 3000",
     "server:sw": "http-server -p 5100 -c-1 dist/Shop -P http://10.0.75.1:5100",
@@ -74,7 +74,6 @@
     "json-server": "^0.15.1",
     "karma": "~4.3.0",
     "protractor": "~5.4.2",
-    "ts-node": "~8.3.0",
     "tslint": "~5.19.0",
     "typescript": "~3.4.5"
   }

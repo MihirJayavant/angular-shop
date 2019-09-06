@@ -1,4 +1,4 @@
-import * as chalk from 'chalk'
+import chalk from 'chalk'
 import * as fs from 'fs'
 
 import { basicCustomerSchema } from './basicCustomerSchema'
@@ -25,8 +25,8 @@ const json = JSON.stringify({ customer: compiledCombinedSchema })
 
 fs.writeFile('./mock-server/buildScripts/db.json', json, err => {
   if (err) {
-    console.log(chalk.default.red(err.message))
+    console.log(chalk.red(err.message))
   } else {
-    console.log(chalk.default.green('Mock API data generated.'))
+    console.log(chalk.green('Mock API data generated.'))
   }
 })
