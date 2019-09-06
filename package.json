@@ -47,6 +47,7 @@
     "@ngrx/router-store": "^8.3.0",
     "@ngrx/store": "^8.3.0",
     "@ngrx/store-devtools": "^8.3.0",
+    "@nguniversal/express-engine": "^8.1.1",
     "bulma": "^0.7.5",
     "core-js": "^3.2.1",
     "immutable": "^4.0.0-rc.12",
