@@ -7,14 +7,14 @@ import { List } from 'immutable'
 })
 export class FilterCustomerNamePipe implements PipeTransform {
   public transform(value: List<Customer> | null, searchText: string): List<Customer> {
-    searchText = searchText.trim()
+    searchText = searchText.trim().toLowerCase()
 
     if (value == null) {
       return List()
     } else if (searchText === '') {
       return value
     } else {
-      return value.filter(p => (!!p ? p.name.startsWith(searchText) : false)).toList()
+      return value.filter(p => (!!p ? p.name.toLowerCase().startsWith(searchText) : false)).toList()
     }
   }
 }

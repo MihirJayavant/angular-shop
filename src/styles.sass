@@ -2,6 +2,7 @@
 
 @import "../node_modules/bulma/bulma"
 @import "./sass/scroll"
+@import "./sass/list"
 
 html
   height: 100%
@@ -16,6 +17,19 @@ div.margin
 
 div.scroll-y
   overflow-y: auto
+  overflow-x: hidden
 
-div.dashboard
-  height: 86vh
+.divider
+  border-bottom: 1px solid hsl(0, 0%, 86%)
+  margin: 0px 11px
+
+.customer-item
+  padding: 8px 10px
+  &:hover
+    background-color: #dbdbdb
+
+.customer-caption
+  margin: 8px
+
+.master
+  border-right: 1px solid hsl(0, 0%, 86%)

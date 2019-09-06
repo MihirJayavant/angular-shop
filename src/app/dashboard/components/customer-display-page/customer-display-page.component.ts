@@ -1,6 +1,10 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core'
+import { Component, ChangeDetectionStrategy, OnInit, OnDestroy } from '@angular/core'
 import { CustomerType } from '../../models'
-import { customerTypeNames } from '../../helpers'
+import { customerTypeNames } from '../../dashboard.helpers'
+import { CustomerViewModel } from '../../view-models'
+import { DataService } from '../../services'
+import { AsyncDataStateType } from 'src/app/models'
+import { Subscription } from 'rxjs'
 
 @Component({
   selector: 'app-customer-display-page',
@@ -8,10 +12,21 @@ import { customerTypeNames } from '../../helpers'
   styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CustomerDisplayPageComponent {
+export class CustomerDisplayPageComponent implements OnInit, OnDestroy {
   public searchText = ''
   public customerType = 'All'
-  public customerTypeNames = customerTypeNames
+  public customerTypeNames = ['All', ...customerTypeNames]
+  public customers$ = this.dataService.getCustomers()
+  public customerDataState$!: Subscription
+  public selectedCustomer: CustomerViewModel | null = null
+
+  constructor(private dataService: DataService) {}
+
+  public ngOnInit(): void {
+    this.customerDataState$ = this.dataService.getCustomerDataState().subscribe(state => {
+      if (state === AsyncDataStateType.INITIAL) this.dataService.loadCustomers()
+    })
+  }
 
   public onTypeChange(event: any) {
     const value = event.srcElement.value
@@ -27,5 +42,13 @@ export class CustomerDisplayPageComponent {
         this.customerType = CustomerType.lead
         break
     }
+  }
+
+  public onClick(item: CustomerViewModel) {
+    this.selectedCustomer = item
+  }
+
+  public ngOnDestroy() {
+    this.customerDataState$.unsubscribe()
   }
 }

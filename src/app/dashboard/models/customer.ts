@@ -2,52 +2,29 @@ export enum CustomerType {
   basic = 'Customer',
   lead = 'Lead'
 }
-export abstract class CustomerBase {
-  public id: string
-  public name: string
-  public readonly type: CustomerType
-  public dateCreated: string
-
-  public constructor(id: string, name: string, type: CustomerType, dateCreated: string) {
-    this.id = id
-    this.name = name
-    this.type = type
-    this.dateCreated = dateCreated
-  }
+export interface CustomerBase {
+  id: string
+  name: string
+  email: string
+  mobile: string
+  type: CustomerType
+  dateCreated: string
 }
 
-export class Bill {
-  public billAmount: number
-  public billId: number
-  public date: string
-
-  constructor(billId: number, billAmount: number, date: string) {
-    this.billId = billId
-    this.billAmount = billAmount
-    this.date = date
-  }
+export interface Bill {
+  billAmount: number
+  billId: number
+  date: string
 }
 
-export class BasicCustomer extends CustomerBase {
-  public email = ''
-  public mobile = 0
-  public billsHistory: Bill[] = []
-
-  public readonly type = CustomerType.basic
-
-  public constructor(id: string, name: string, type: CustomerType, dateCreated: string) {
-    super(id, name, type, dateCreated)
-  }
+export interface BasicCustomer extends CustomerBase {
+  avatar: string
+  billsHistory: Bill[]
+  type: CustomerType.basic
 }
 
-export class Lead extends CustomerBase {
-  public email = ''
-  public mobile = 0
-  public readonly type = CustomerType.lead
-
-  public constructor(id: string, name: string, type: CustomerType, dateCreated: string) {
-    super(id, name, type, dateCreated)
-  }
+export interface Lead extends CustomerBase {
+  type: CustomerType.lead
 }
 
 export type Customer = BasicCustomer | Lead

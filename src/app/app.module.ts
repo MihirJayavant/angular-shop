@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser'
 import { NgModule } from '@angular/core'
-import { Routes, RouterModule } from '@angular/router'
+import { Routes, RouterModule, PreloadAllModules } from '@angular/router'
 import { HttpClientModule } from '@angular/common/http'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 import { StoreModule } from '@ngrx/store'
 import { EffectsModule } from '@ngrx/effects'
@@ -11,17 +12,21 @@ import { StoreRouterConnectingModule, RouterStateSerializer } from '@ngrx/router
 import { environment } from '../environments/environment'
 
 import { AppComponent } from './app.component'
-import { DashboardModule } from './dashboard'
 import { HomeModule } from './home'
 import { HttpService } from './services'
 import { reducers, CustomSerializer } from './store'
+import { ServiceWorkerModule } from '@angular/service-worker'
 
-const routes: Routes = [{ path: '', pathMatch: 'full', redirectTo: 'home' }]
+const routes: Routes = [
+  { path: '', pathMatch: 'full', redirectTo: 'home' },
+  { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule' }
+]
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     RouterModule.forRoot(routes, { enableTracing: environment.enableTracing }),
     StoreModule.forRoot(reducers),
@@ -32,8 +37,8 @@ const routes: Routes = [{ path: '', pathMatch: 'full', redirectTo: 'home' }]
           maxAge: 25 // Retains last 25 states
         })
       : [],
-    DashboardModule,
-    HomeModule
+    HomeModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [HttpService, { provide: RouterStateSerializer, useClass: CustomSerializer }],
   bootstrap: [AppComponent]

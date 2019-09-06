@@ -13,14 +13,14 @@ export class HttpService {
   }
 
   public post<T, U>(endpoint: string, body: U) {
-    return this.http.post(this.baseUrl + endpoint, body)
+    return this.http.post<T>(this.baseUrl + endpoint, body)
   }
 
   public put<T, U>(endpoint: string, body: U) {
-    return this.http.put(this.baseUrl + endpoint, body)
+    return this.http.put<T>(this.baseUrl + endpoint, body)
   }
 
   public delete<T>(endpoint: string) {
-    return this.http.delete(this.baseUrl + endpoint)
+    return this.http.delete<T>(this.baseUrl + endpoint)
   }
 }
