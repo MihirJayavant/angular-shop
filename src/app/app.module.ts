@@ -28,7 +28,7 @@ export const routes: Routes = [
 @NgModule({
   declarations: [AppComponent],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     BrowserAnimationsModule,
     HttpClientModule,
     RouterModule.forRoot(routes, { enableTracing: environment.enableTracing }),
