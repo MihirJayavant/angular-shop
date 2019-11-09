@@ -1,0 +1,33 @@
+<form #f="ngForm" (submit)="onLogin(f)">
+  <div class="field">
+    <p class="control has-icons-left">
+
+      <input class="input" type="email" [(ngModel)]="formData.email" name="email" placeholder="Email" #email="ngModel"
+        [ngClass]="{'is-danger': (email.invalid && email.touched)}" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+        required>
+
+      <span class="icon is-small is-left">
+        <i class="fas fa-envelope"></i>
+      </span>
+    </p>
+  </div>
+  <div class="field">
+    <p class="control has-icons-left">
+
+      <input class="input" type="password" [(ngModel)]="formData.password" name="password" placeholder="Password"
+        #password="ngModel" required [ngClass]="{'is-danger': (password.invalid && password.touched)}" maxlength="25"
+        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters">
+
+      <span class="icon is-small is-left">
+        <i class="fas fa-lock"></i>
+      </span>
+    </p>
+  </div>
+  <div class="field">
+    <p class="control">
+      <button class="button is-success" type="submit" [disabled]="f.invalid || f.untouched">
+        Login
+      </button>
+    </p>
+  </div>
+</form>
