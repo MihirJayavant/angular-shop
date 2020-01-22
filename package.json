@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --port 5000",
-    "start:sw": "npm run build && npm run server:sw",
+    "start:sw": "yarn run build && yarn run server:sw",
     "build": "ng build --prod",
     "build:qa": "ng build --configuration=qa",
     "test": "jest",
@@ -14,15 +14,15 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "generate-mock-api-data": "tsc mock-server/buildScripts/generateData.ts && node mock-server/buildScripts/generateData.js",
-    "preserver:mock": "npm run generate-mock-api-data",
+    "preserver:mock": "yarn run generate-mock-api-data",
     "server:mock": "json-server --watch mock-server/buildScripts/db.json --port 3000",
     "server:sw": "http-server -p 5100 -c-1 dist/Shop -P http://10.0.75.1:5100",
     "doc": "compodoc -p src/tsconfig.app.json -s",
     "compile:server": "webpack --config webpack.server.config.js --progress --colors",
     "serve:ssr": "node dist/server",
-    "build:ssr": "npm run build:client-and-server-bundles && npm run compile:server",
+    "build:ssr": "yarn run build:client-and-server-bundles && yarn run compile:server",
     "build:client-and-server-bundles": "ng build --prod && ng run Shop:server:production --bundleDependencies all",
-    "ssr": "npm run build:ssr && npm run serve:ssr"
+    "ssr": "yarn run build:ssr && yarn run serve:ssr"
   },
   "jest": {
     "preset": "jest-preset-angular",
