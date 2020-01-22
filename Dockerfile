@@ -1,10 +1,13 @@
-FROM node:alpine as builder
+# Angular build
+FROM node:12-alpine as builder
 WORKDIR /app
-RUN npm install -g yarn
 COPY package.json .
+COPY yarn.lock .
 RUN yarn
 COPY . .
 RUN npm run build
 
+# Final image
 FROM nginx
+COPY nginx/default.conf /etc/nginx/conf.d/default.conf
 COPY --from=builder /app/dist/Shop /usr/share/nginx/html
