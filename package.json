@@ -1,10 +1,10 @@
 {
   "name": "shop",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve --port 5000",
-    "start:sw": "npm run build && npm run server:sw",
+    "start:sw": "yarn run build && yarn run server:sw",
     "build": "ng build --prod",
     "build:qa": "ng build --configuration=qa",
     "test": "jest",
@@ -14,7 +14,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "generate-mock-api-data": "tsc mock-server/buildScripts/generateData.ts && node mock-server/buildScripts/generateData.js",
-    "preserver:mock": "npm run generate-mock-api-data",
+    "preserver:mock": "yarn run generate-mock-api-data",
     "server:mock": "json-server --watch mock-server/buildScripts/db.json --port 3000",
     "server:sw": "http-server -p 5100 -c-1 dist/Shop -P http://10.0.75.1:5100",
     "doc": "compodoc -p src/tsconfig.app.json -s"
