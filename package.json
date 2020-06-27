@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "postinstall": "ngcc",
-    "start": "ng serve --port 5000",
+    "start": "ng serve",
     "start:sw": "yarn run build && yarn run server:sw",
     "build": "ng build --prod",
     "build:qa": "ng build --configuration=qa",
@@ -49,7 +49,6 @@
     "@ngrx/store-devtools": "^9.2.0",
     "bulma": "^0.9.0",
     "core-js": "^3.2.1",
-    "immutable": "^4.0.0-rc.12",
     "rxjs": "^6.5.5",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
