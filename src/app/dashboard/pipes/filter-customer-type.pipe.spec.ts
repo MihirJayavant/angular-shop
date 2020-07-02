@@ -1,6 +1,5 @@
 import { FilterCustomerTypePipe } from './filter-customer-type.pipe'
 import { Customer, Lead, CustomerType, BasicCustomer } from '../models'
-import { List } from 'immutable'
 
 const lead: Lead = {
   id: '1',
@@ -8,7 +7,7 @@ const lead: Lead = {
   email: 'shank@e.com',
   name: 'shank',
   mobile: '5643',
-  type: CustomerType.lead
+  type: CustomerType.lead,
 }
 
 const basic: BasicCustomer = {
@@ -19,7 +18,7 @@ const basic: BasicCustomer = {
   mobile: '56433',
   type: CustomerType.basic,
   avatar: '',
-  billsHistory: []
+  billsHistory: [],
 }
 
 const customerList: Customer[] = [lead, basic]
@@ -27,21 +26,21 @@ const pipe = new FilterCustomerTypePipe()
 
 it(`that all (2) customers are returned when input is 'All'`, () => {
   // Act
-  const output = pipe.transform(List(customerList), 'All')
+  const output = pipe.transform(customerList, 'All')
   // Assert
-  expect(output.count()).toBe(2)
+  expect(output.length).toBe(2)
 })
 
 it(`that all (1) customers are returned when input is '${CustomerType.lead}'`, () => {
   // Act
-  const output = pipe.transform(List(customerList), CustomerType.lead)
+  const output = pipe.transform(customerList, CustomerType.lead)
   // Assert
-  expect(output.count()).toBe(1)
+  expect(output.length).toBe(1)
 })
 
 it(`that all (1) customers are returned when input is '${CustomerType.basic}'`, () => {
   // Act
-  const output = pipe.transform(List(customerList), CustomerType.basic)
+  const output = pipe.transform(customerList, CustomerType.basic)
   // Assert
-  expect(output.count()).toBe(1)
+  expect(output.length).toBe(1)
 })
