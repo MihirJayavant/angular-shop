@@ -6,14 +6,13 @@ import {
   LoadCustomerSuccess,
   LoadCustomerFailed,
   PostCustomer,
-  PostCustomerSuccess
+  PostCustomerSuccess,
 } from '../actions'
 
 import { switchMap, map, catchError } from 'rxjs/operators'
 import { of } from 'rxjs'
 import { HttpService } from 'src/app/services'
 import { Customer } from '../../models'
-import { List } from 'immutable'
 
 @Injectable()
 export class CustomerEffect {
@@ -24,7 +23,7 @@ export class CustomerEffect {
     ofType(CustomerActionType.LOAD),
     switchMap(() =>
       this.getCustomers().pipe(
-        map(customers => new LoadCustomerSuccess(List(customers))),
+        map(customers => new LoadCustomerSuccess(customers)),
         catchError(error => of(new LoadCustomerFailed(error)))
       )
     )
