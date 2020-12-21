@@ -1,15 +1,14 @@
-import { List } from 'immutable'
 import { Customer } from '../../models'
 import { CustomerAction, CustomerActionType } from './../actions'
 import { IAsyncData, getInitialState, withReducer } from 'src/app/models'
 
-export interface CustomerState extends IAsyncData<List<Customer>> {
+export interface CustomerState extends IAsyncData<Customer[]> {
   postLoading: boolean
 }
 
 export const initalState: CustomerState = {
-  ...getInitialState<List<Customer>>(List<Customer>()),
-  postLoading: false
+  ...getInitialState<Customer[]>([]),
+  postLoading: false,
 }
 
 function baseReducer(state = initalState, action: CustomerAction): CustomerState {
@@ -17,12 +16,12 @@ function baseReducer(state = initalState, action: CustomerAction): CustomerState
     case CustomerActionType.POST:
       return {
         ...state,
-        postLoading: true
+        postLoading: true,
       }
     case CustomerActionType.POSTSUCCESS:
       return {
         ...state,
-        postLoading: false
+        postLoading: false,
       }
 
     default:
@@ -34,6 +33,6 @@ export function reducer(state = initalState, action: CustomerAction): CustomerSt
   return withReducer(baseReducer, {
     errorActionType: CustomerActionType.ERROR,
     loadActionType: CustomerActionType.LOAD,
-    successActionType: CustomerActionType.SUCCESS
+    successActionType: CustomerActionType.SUCCESS,
   })(state, action)
 }
