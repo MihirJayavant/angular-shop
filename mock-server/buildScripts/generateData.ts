@@ -1,9 +1,9 @@
-import chalk from 'chalk'
 import * as fs from 'fs'
 
 import { basicCustomerSchema } from './basicCustomerSchema'
 import { leadSchema } from './leadSchema'
 import { combineSchema } from './helper'
+import * as chalk from 'chalk'
 
 const jsf = require('json-schema-faker')
 const faker = require('faker')
@@ -13,7 +13,7 @@ jsf.extend('faker', () => {
     preDefineDate: () => {
       const date = new Date(faker.date.past(10).toString())
       return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`
-    }
+    },
   }
   return faker
 })
