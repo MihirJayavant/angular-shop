@@ -1,12 +1,30 @@
 {
   "name": "shop",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "start": "ng serve --hmr",
+    "start:sw": "yarn run build && yarn run server:sw",
+    "build": "ng build --configuration production",
+    "build:qa": "ng build --configuration=qa",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:ci": "jest --runInBand",
+    "test:coverage": "jest --coverage",
+    "lint": "ng lint",
+    "e2e": "ng e2e",
+    "generate-mock-api-data": "tsc --project mock-server/tsconfig.json && node mock-server/buildScripts/generateData.js",
+    "preserver:mock": "yarn run generate-mock-api-data",
+    "server:mock": "json-server --watch mock-server/buildScripts/db.json --port 3000",
+    "server:sw": "http-server -p 5100 -c-1 dist/Shop -P http://10.0.75.1:5100",
+    "doc": "compodoc -p tsconfig.doc.json -s"
+  },
+  "jest": {
+    "preset": "jest-preset-angular",
+    "setupFilesAfterEnv": [
+      "<rootDir>/setupJest.ts"
+    ],
+    "tsconfig": "<rootDir>/src/tsconfig.spec.json"
   },
   "private": true,
   "dependencies": {
@@ -18,6 +36,13 @@
     "@angular/platform-browser": "^16.0.0",
     "@angular/platform-browser-dynamic": "^16.0.0",
     "@angular/router": "^16.0.0",
+    "@angular/service-worker": "^16.0.1",
+    "@ngrx/effects": "^16.0.0",
+    "@ngrx/entity": "^16.0.0",
+    "@ngrx/router-store": "^16.0.0",
+    "@ngrx/store": "^16.0.0",
+    "@ngrx/store-devtools": "^16.0.0",
+    "bulma": "^0.9.4",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0"

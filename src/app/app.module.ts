@@ -31,7 +31,7 @@ export const routes: Routes = [
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    RouterModule.forRoot(routes, { enableTracing: environment.enableTracing, relativeLinkResolution: 'legacy' }),
+    RouterModule.forRoot(routes),
     StoreModule.forRoot(reducers),
     EffectsModule.forRoot([]),
     StoreRouterConnectingModule.forRoot(),
