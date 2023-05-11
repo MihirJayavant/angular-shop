@@ -8,34 +8,32 @@ export const basicCustomerSchema = {
     properties: {
       id: {
         type: 'string',
-        faker: 'random.uuid'
+        faker: 'faker.datatype.uuid',
       },
       name: {
         type: 'string',
-        faker: 'name.findName'
+        faker: 'faker.name.fullName',
       },
       type: {
         type: 'string',
-        pattern: 'Customer'
+        pattern: 'Customer',
       },
       email: {
         type: 'string',
         format: 'email',
-        faker: 'internet.email'
+        faker: 'faker.internet.email',
       },
       mobile: {
         type: 'string',
-        faker: 'phone.phoneNumberFormat'
+        faker: 'faker.phone.number',
       },
       avatar: {
         type: 'string',
-        faker: 'image.avatar'
+        faker: 'faker.image.avatar',
       },
       dateCreated: {
-        type: 'date',
-        faker: {
-          'custom.preDefineDate': []
-        }
+        type: 'string',
+        faker: 'faker.date.past',
       },
       billsHistory: {
         type: 'array',
@@ -47,23 +45,21 @@ export const basicCustomerSchema = {
           properties: {
             billId: {
               type: 'string',
-              faker: 'random.uuid'
+              faker: 'faker.random.uuid',
             },
             billAmount: {
               type: 'number',
-              faker: 'finance.amount'
+              faker: 'faker.finance.amount',
             },
             date: {
               type: 'string',
-              faker: {
-                'custom.preDefineDate': []
-              }
-            }
+              faker: 'faker.date.past',
+            },
           },
-          required: ['billId', 'billAmount', 'date']
-        }
-      }
+          required: ['billId', 'billAmount', 'date'],
+        },
+      },
     },
-    required: ['id', 'name', 'type', 'email', 'mobile', 'dateCreated', 'avatar', 'billsHistory']
-  }
+    required: ['id', 'name', 'type', 'email', 'mobile', 'dateCreated', 'avatar', 'billsHistory'],
+  },
 }
