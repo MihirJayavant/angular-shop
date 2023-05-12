@@ -1,20 +1,13 @@
 <div>
-  <shared-master-detail
-    [dataList]="
-      customers$ | async | filterCustomerType: customerType | filterCustomerName: searchText
-    "
-    [reducedHeight]="105"
-  >
+  <shared-master-detail [dataList]="
+      customers() | filterCustomerType: customerType() | filterCustomerName: searchText()
+    " [reducedHeight]="105">
     <shared-master-caption>
       <div class="customer-caption">
         <div class="field has-addons">
           <p class="control is-expanded">
-            <input
-              class="input"
-              type="text"
-              placeholder="Search by name"
-              [(ngModel)]="searchText"
-            />
+            <input class="input" type="text" placeholder="Search by name" [ngModel]="searchText()"
+              (ngModelChange)="searchText.set($event)" />
           </p>
           <p class="control">
             <span class="select">
@@ -30,7 +23,7 @@
       <app-customer-list-item [customer]="item" (select)="onClick($event)"></app-customer-list-item>
     </shared-master>
     <shared-detail>
-      <app-customer-details [customer]="selectedCustomer"></app-customer-details>
+      <app-customer-details [customer]="selectedCustomer()"></app-customer-details>
     </shared-detail>
   </shared-master-detail>
 </div>

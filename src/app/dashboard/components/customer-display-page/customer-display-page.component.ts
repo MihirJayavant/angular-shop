@@ -1,31 +1,31 @@
-import { Component, ChangeDetectionStrategy, OnInit, OnDestroy } from '@angular/core'
+import { Component, ChangeDetectionStrategy, OnInit, signal } from '@angular/core'
 import { CustomerType } from '../../models'
 import { customerTypeNames } from '../../dashboard.helpers'
 import { CustomerViewModel } from '../../view-models'
 import { DataService } from '../../services'
 import { AsyncDataStateType } from 'src/app/models'
-import { Subscription } from 'rxjs'
+import { toSignal } from '@angular/core/rxjs-interop'
 
 @Component({
   selector: 'app-customer-display-page',
   templateUrl: './customer-display-page.component.html',
   styles: [],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CustomerDisplayPageComponent implements OnInit, OnDestroy {
-  public searchText = ''
-  public customerType = 'All'
+export class CustomerDisplayPageComponent implements OnInit {
+  public searchText = signal('')
+  public customerType = signal('All')
   public customerTypeNames = ['All', ...customerTypeNames]
-  public customers$ = this.dataService.getCustomers()
-  public customerDataState$!: Subscription
-  public selectedCustomer: CustomerViewModel | null = null
+  public customers = toSignal(this.dataService.getCustomers(), { initialValue: [] })
+  public customerDataState = toSignal(this.dataService.getCustomerDataState(), {
+    initialValue: AsyncDataStateType.INITIAL,
+  })
+  public selectedCustomer = signal<CustomerViewModel | undefined>(undefined)
 
   constructor(private dataService: DataService) {}
 
   public ngOnInit(): void {
-    this.customerDataState$ = this.dataService.getCustomerDataState().subscribe(state => {
-      if (state === AsyncDataStateType.INITIAL) this.dataService.loadCustomers()
-    })
+    if (this.customerDataState() === AsyncDataStateType.INITIAL) this.dataService.loadCustomers()
   }
 
   public onTypeChange(event: any) {
@@ -33,22 +33,18 @@ export class CustomerDisplayPageComponent implements OnInit, OnDestroy {
 
     switch (value) {
       case 'All':
-        this.customerType = 'All'
+        this.customerType.set('All')
         break
       case CustomerType.basic:
-        this.customerType = CustomerType.basic
+        this.customerType.set(CustomerType.basic)
         break
       case CustomerType.lead:
-        this.customerType = CustomerType.lead
+        this.customerType.set(CustomerType.lead)
         break
     }
   }
 
   public onClick(item: CustomerViewModel) {
-    this.selectedCustomer = item
-  }
-
-  public ngOnDestroy() {
-    this.customerDataState$.unsubscribe()
+    this.selectedCustomer.set(item)
   }
 }

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --hmr",
+    "start": "ng serve",
     "start:sw": "yarn run build && yarn run server:sw",
     "build": "ng build --configuration production",
     "build:qa": "ng build --configuration=qa",
