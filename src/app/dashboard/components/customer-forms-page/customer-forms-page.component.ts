@@ -26,7 +26,14 @@ export class CustomerFormsPageComponent {
   public onSubmit() {
     const value = this.form.value
     this.store.dispatch(
-      new PostCustomer({ ...value, type: CustomerType.lead, dateCreated: '2/5/2018' })
+      new PostCustomer({
+        id: (Math.random() * 1000) + "",
+        type: CustomerType.lead,
+        dateCreated: '2/5/2018',
+        email: value.email ?? '',
+        mobile: value.mobile ?? '',
+        name: value.name ?? ''
+      })
     )
   }
 

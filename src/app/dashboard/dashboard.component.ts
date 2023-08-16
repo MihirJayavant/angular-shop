@@ -60,6 +60,6 @@ export class DashboardComponent {
   constructor() {}
 
   public getState(outlet: RouterOutlet) {
-    return outlet.activatedRouteData.animation
+    return outlet.activatedRouteData['animation'];
   }
 }

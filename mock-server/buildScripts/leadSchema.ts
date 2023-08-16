@@ -8,32 +8,30 @@ export const leadSchema = {
     properties: {
       id: {
         type: 'string',
-        faker: 'random.uuid'
+        faker: 'faker.datatype.uuid',
       },
       name: {
         type: 'string',
-        faker: 'name.findName'
+        faker: 'faker.name.fullName',
       },
       type: {
         type: 'string',
-        pattern: 'Lead'
+        pattern: 'Lead',
       },
       email: {
         type: 'string',
         format: 'email',
-        faker: 'internet.email'
+        faker: 'faker.internet.email',
       },
       mobile: {
         type: 'string',
-        faker: 'phone.phoneNumberFormat'
+        faker: 'faker.phone.number',
       },
       dateCreated: {
-        type: 'date',
-        faker: {
-          'custom.preDefineDate': []
-        }
-      }
+        type: 'string',
+        faker: 'faker.date.past',
+      },
     },
-    required: ['id', 'name', 'type', 'email', 'mobile', 'dateCreated']
-  }
+    required: ['id', 'name', 'type', 'email', 'mobile', 'dateCreated'],
+  },
 }

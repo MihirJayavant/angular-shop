@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core'
 
-import { Effect, Actions, ofType } from '@ngrx/effects'
+import { createEffect, Actions, ofType } from '@ngrx/effects'
 import {
   CustomerActionType,
   LoadCustomerSuccess,
@@ -18,8 +18,7 @@ import { Customer } from '../../models'
 export class CustomerEffect {
   constructor(private http: HttpService, private actions$: Actions) {}
 
-  @Effect()
-  public loadCustomer$ = this.actions$.pipe(
+  public loadCustomer$ = createEffect( () => this.actions$.pipe(
     ofType(CustomerActionType.LOAD),
     switchMap(() =>
       this.getCustomers().pipe(
@@ -27,19 +26,18 @@ export class CustomerEffect {
         catchError(error => of(new LoadCustomerFailed(error)))
       )
     )
-  )
+  ))
 
-  @Effect()
-  public postCustomer$ = this.actions$.pipe(
+  public postCustomer$ = createEffect( () => this.actions$.pipe(
     ofType(CustomerActionType.POST),
     map((action: PostCustomer) => action.payload),
     switchMap(payload =>
       this.postCustomers(payload).pipe(
         map(_ => new PostCustomerSuccess()),
-        catchError(error => of(''))
+        catchError(error => of(new LoadCustomerFailed(error)))
       )
     )
-  )
+  ))
 
   public getCustomers() {
     return this.http.get<Customer[]>('/customer')
