@@ -3,13 +3,12 @@ import { routes } from './app.routes'
 import { importProvidersFrom } from '@angular/core'
 import { AppComponent } from './app.component'
 import { ServiceWorkerModule } from '@angular/service-worker'
-import { HomeModule } from './home'
 import { StoreDevtoolsModule } from '@ngrx/store-devtools'
 import { environment } from 'src/environments/environment'
-import { EffectsModule } from '@ngrx/effects'
-import { StoreModule } from '@ngrx/store'
+import { EffectsModule, provideEffects } from '@ngrx/effects'
+import { StoreModule, provideState, provideStore } from '@ngrx/store'
 import { provideRouter } from '@angular/router'
-import { withInterceptorsFromDi, provideHttpClient } from '@angular/common/http'
+import { withInterceptorsFromDi, provideHttpClient, withFetch } from '@angular/common/http'
 import { provideAnimations } from '@angular/platform-browser/animations'
 import { BrowserModule, bootstrapApplication } from '@angular/platform-browser'
 import { CustomSerializer, reducers } from './store'
@@ -22,23 +21,13 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
     provideClientHydration(),
-    importProvidersFrom(
-      BrowserModule,
-      StoreModule.forRoot(reducers),
-      EffectsModule.forRoot([]),
-      StoreRouterConnectingModule.forRoot(),
-      environment.production
-        ? StoreDevtoolsModule.instrument({
-            maxAge: 25, // Retains last 25 states
-          })
-        : [],
-      HomeModule,
-      ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
-    ),
+    provideStore(),
+    provideState('shop', reducers),
+    provideEffects(),
     HttpService,
     { provide: RouterStateSerializer, useClass: CustomSerializer },
     provideAnimations(),
-    provideHttpClient(withInterceptorsFromDi()),
+    provideHttpClient(withInterceptorsFromDi(), withFetch()),
     provideRouter(routes),
   ],
 }
