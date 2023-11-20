@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  nginx:
+    restart: always
+    build:
+      context: ./nginx
+    ports:
+      - '5100:80'
+    depends_on:
+      - webapp
+  webapp:
+    build:
+      context: .
+      dockerfile: ssr.dockerfile
+    environment:
+      - PORT=5000

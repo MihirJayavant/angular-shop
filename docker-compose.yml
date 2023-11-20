@@ -4,6 +4,6 @@ services:
   webapp:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: browser.dockerfile
     ports:
       - '5100:80'
