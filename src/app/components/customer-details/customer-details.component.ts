@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core'
-import { NgIf } from '@angular/common'
+import { NgIf, NgOptimizedImage } from '@angular/common'
 import { CustomerViewModel } from 'src/core/customer.viewmodel'
 
 @Component({
@@ -7,7 +7,7 @@ import { CustomerViewModel } from 'src/core/customer.viewmodel'
   templateUrl: './customer-details.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [NgIf],
+  imports: [NgIf, NgOptimizedImage],
 })
 export class CustomerDetailsComponent {
   public _customer!: CustomerViewModel
