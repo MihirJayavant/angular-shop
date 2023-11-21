@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core'
 import { trigger, transition, query, style, group, animate } from '@angular/animations'
-import { RouterOutlet, RouterLinkActive, RouterLink, RouterModule } from '@angular/router'
+import { RouterOutlet, RouterLinkActive, RouterLink } from '@angular/router'
 import { NavbarComponent } from '../../components'
 
 export const routerTransition = trigger('routerTransition', [
@@ -57,14 +57,7 @@ export const routerTransition = trigger('routerTransition', [
   animations: [routerTransition],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [
-    NavbarComponent,
-    RouterLinkActive,
-    RouterLink,
-    RouterOutlet,
-    // StoreModule.forFeature(dashboardName, reducers),
-    // EffectsModule.forFeature(effects),
-  ],
+  imports: [NavbarComponent, RouterLinkActive, RouterLink, RouterOutlet],
 })
 export class DashboardComponent {
   constructor() {}

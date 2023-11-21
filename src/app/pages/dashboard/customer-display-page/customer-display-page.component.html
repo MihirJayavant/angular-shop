@@ -1,18 +1,25 @@
-<div>
-  <shared-master-detail [dataList]="
-      customers() | filterCustomerType: customerType() | filterCustomerName: searchText()
-    " [reducedHeight]="105">
+<div class="master-details">
+  <shared-master-detail
+    [dataList]="
+      customers() | filterCustomerType : customerType() | filterCustomerName : searchText()
+    "
+  >
     <shared-master-caption>
       <div class="customer-caption">
         <div class="field has-addons">
           <p class="control is-expanded">
-            <input class="input" type="text" placeholder="Search by name" [ngModel]="searchText()"
-              (ngModelChange)="searchText.set($event)" />
+            <input
+              class="input"
+              type="text"
+              placeholder="Search by name"
+              [ngModel]="searchText()"
+              (ngModelChange)="searchText.set($event)"
+            />
           </p>
           <p class="control">
             <span class="select">
               <select (change)="onTypeChange($event)">
-                <option *ngFor="let type of customerTypeNames" [value]="type"> {{ type }} </option>
+                <option *ngFor="let type of customerTypeNames" [value]="type">{{ type }}</option>
               </select>
             </span>
           </p>

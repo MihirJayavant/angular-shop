@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core'
 import { Store } from '@ngrx/store'
 import { CustomerState, PostCustomer } from '../store'
-import { FormBuilder, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms'
+import { FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms'
 
 import { nameValidator } from './form.validators'
 import { CustomerType } from 'src/core/customer'
@@ -12,7 +12,7 @@ import { CustomerType } from 'src/core/customer'
   styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule],
+  imports: [ReactiveFormsModule],
 })
 export class CustomerFormsPageComponent {
   public customerType = [CustomerType.basic, CustomerType.lead]

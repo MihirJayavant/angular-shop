@@ -13,7 +13,7 @@ import { NgOptimizedImage } from '@angular/common'
 export class CustomerListItemComponent {
   public _customer!: CustomerViewModel
 
-  @Input()
+  @Input({ required: true })
   public set customer(value: Customer) {
     this._customer = convertToCustomerViewModel(value)
   }

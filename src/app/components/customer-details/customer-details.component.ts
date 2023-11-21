@@ -13,7 +13,7 @@ export class CustomerDetailsComponent {
   public _customer!: CustomerViewModel
   public isLoaded = false
 
-  @Input()
+  @Input({ required: true })
   public set customer(value: CustomerViewModel | undefined) {
     if (!!value) {
       this._customer = value
