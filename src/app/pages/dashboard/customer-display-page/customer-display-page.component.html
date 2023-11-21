@@ -19,7 +19,9 @@
           <p class="control">
             <span class="select">
               <select (change)="onTypeChange($event)">
-                <option *ngFor="let type of customerTypeNames" [value]="type">{{ type }}</option>
+                @for (item of customerTypeNames; track item) {
+                <option [value]="item">{{ item }}</option>
+                }
               </select>
             </span>
           </p>

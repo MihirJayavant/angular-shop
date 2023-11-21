@@ -1,4 +1,5 @@
-<div class="hero is-primary" *ngIf="isLoaded; else nothing">
+@if (isLoaded) {
+<div class="hero is-primary">
   <div class="hero-body">
     <div class="container">
       <div class="columns">
@@ -15,7 +16,6 @@
     </div>
   </div>
 </div>
-
-<ng-template #nothing>
-  <div>Nothing Selected</div>
-</ng-template>
+} @else {
+<div>Nothing Selected</div>
+}
