@@ -1,8 +1,8 @@
 <div class="master-details">
-  <shared-master-detail
+  <app-master-detail
     [dataList]="customers() | filterCustomerType: customerType() | filterCustomerName: searchText()"
   >
-    <shared-master-caption>
+    <app-master-caption>
       <div class="customer-caption">
         <div class="field has-addons">
           <p class="control is-expanded">
@@ -25,12 +25,12 @@
           </p>
         </div>
       </div>
-    </shared-master-caption>
-    <shared-master *sharedMasterItem="let item">
+    </app-master-caption>
+    <app-master *appMasterItem="let item">
       <app-customer-list-item [customer]="item" (select)="onClick($event)"></app-customer-list-item>
-    </shared-master>
-    <shared-detail>
+    </app-master>
+    <app-detail>
       <app-customer-details [customer]="selectedCustomer()"></app-customer-details>
-    </shared-detail>
-  </shared-master-detail>
+    </app-detail>
+  </app-master-detail>
 </div>

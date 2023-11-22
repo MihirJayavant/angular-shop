@@ -73,7 +73,7 @@ export class CustomerDisplayPageComponent implements OnInit {
     }
   }
 
-  public onClick(item: CustomerViewModel) {
+  public onClick(item: any) {
     this.selectedCustomer.set(item)
   }
 }

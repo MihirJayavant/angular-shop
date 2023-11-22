@@ -7,7 +7,7 @@ import { Directive, ElementRef, Input, Renderer2 } from '@angular/core'
 })
 export class ActiveDirective {
   @Input()
-  set isActive(value: boolean) {
+  set appActive(value: boolean) {
     if (value) this.renderer.addClass(this.el.nativeElement, 'is-active')
     else this.renderer.removeClass(this.el.nativeElement, 'is-active')
   }

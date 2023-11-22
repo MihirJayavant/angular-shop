@@ -16,7 +16,7 @@ export class CustomerDetailsComponent {
   public isLoaded = false
 
   @Input({ required: true })
-  public set customer(value: CustomerViewModel | undefined) {
+  public set customer(value: CustomerViewModel | null | undefined) {
     if (value) {
       this.customerData = value
       this.isLoaded = true
