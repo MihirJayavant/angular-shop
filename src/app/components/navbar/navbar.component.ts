@@ -1,13 +1,13 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core'
+import { ChangeDetectionStrategy, Component } from '@angular/core'
 import { ActiveDirective } from '../../directives/active.directive'
 
 @Component({
-  selector: 'shared-navbar',
-  templateUrl: './navbar.component.html',
-  styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
   imports: [ActiveDirective],
+  selector: 'app-navbar',
+  standalone: true,
+  styles: [],
+  templateUrl: './navbar.component.html',
 })
 export class NavbarComponent {
   public isActive = false

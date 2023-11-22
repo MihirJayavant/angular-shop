@@ -1,8 +1,6 @@
 <div class="master-details">
   <shared-master-detail
-    [dataList]="
-      customers() | filterCustomerType : customerType() | filterCustomerName : searchText()
-    "
+    [dataList]="customers() | filterCustomerType: customerType() | filterCustomerName: searchText()"
   >
     <shared-master-caption>
       <div class="customer-caption">
@@ -20,7 +18,7 @@
             <span class="select">
               <select (change)="onTypeChange($event)">
                 @for (item of customerTypeNames; track item) {
-                <option [value]="item">{{ item }}</option>
+                  <option [value]="item">{{ item }}</option>
                 }
               </select>
             </span>

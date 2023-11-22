@@ -1,29 +1,21 @@
-import { Component, ChangeDetectionStrategy, OnInit, signal } from '@angular/core'
-
-import { DataService } from '../services'
-
-import { toSignal } from '@angular/core/rxjs-interop'
-import { FilterCustomerTypePipe } from '../pipes/filter-customer-type.pipe'
-import { FilterCustomerNamePipe } from '../pipes/filter-customer-name.pipe'
+import { ChangeDetectionStrategy, Component, OnInit, signal } from '@angular/core'
+import { DetailComponent, MasterComponent, MasterDetailComponent } from 'src/app/components'
+import { AsyncDataStateType } from 'src/core/async-data-state'
 import { CustomerDetailsComponent } from '../../../components/customer-details/customer-details.component'
-
 import { CustomerListItemComponent } from '../../../components/customer-list-item/customer-list-item.component'
-
+import { CustomerType } from 'src/core/customer'
+import { CustomerViewModel } from 'src/core/customer.viewmodel'
+import { DataService } from '../services'
+import { FilterCustomerNamePipe } from '../pipes/filter-customer-name.pipe'
+import { FilterCustomerTypePipe } from '../pipes/filter-customer-type.pipe'
+import { FormsModule } from '@angular/forms'
+import { MasterCaptionComponent } from 'src/app/components/master-detail/master-caption/master-caption.component'
 import { MasterItemDirective } from '../../../directives/master-item.directive'
 import { NgFor } from '@angular/common'
-import { FormsModule } from '@angular/forms'
-import { MasterDetailComponent, MasterComponent, DetailComponent } from 'src/app/components'
-import { MasterCaptionComponent } from 'src/app/components/master-detail/master-caption/master-caption.component'
-import { AsyncDataStateType } from 'src/core/async-data-state'
-import { CustomerViewModel } from 'src/core/customer.viewmodel'
-import { CustomerType } from 'src/core/customer'
+import { toSignal } from '@angular/core/rxjs-interop'
 
 @Component({
-  selector: 'app-customer-display-page',
-  templateUrl: './customer-display-page.component.html',
-  styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
   imports: [
     MasterDetailComponent,
     MasterCaptionComponent,
@@ -37,25 +29,34 @@ import { CustomerType } from 'src/core/customer'
     FilterCustomerNamePipe,
     FilterCustomerTypePipe,
   ],
+  selector: 'app-customer-display-page',
+  standalone: true,
+  styles: [],
+  templateUrl: './customer-display-page.component.html',
 })
 export class CustomerDisplayPageComponent implements OnInit {
   public searchText = signal('')
+
   public customerType = signal('All')
+
   public customerTypeNames = ['All', CustomerType.basic, CustomerType.lead]
+
   public customers = toSignal(this.dataService.getCustomers(), { initialValue: [] })
+
   public customerDataState = toSignal(this.dataService.getCustomerDataState(), {
     initialValue: AsyncDataStateType.INITIAL,
   })
-  public selectedCustomer = signal<CustomerViewModel | undefined>(undefined)
 
-  constructor(private dataService: DataService) {}
+  public selectedCustomer = signal<CustomerViewModel | undefined | null>(null)
+
+  constructor(private readonly dataService: DataService) {}
 
   public ngOnInit(): void {
     if (this.customerDataState() === AsyncDataStateType.INITIAL) this.dataService.loadCustomers()
   }
 
   public onTypeChange(event: any) {
-    const value = event.srcElement.value
+    const { value } = event.srcElement
 
     switch (value) {
       case 'All':
@@ -66,6 +67,8 @@ export class CustomerDisplayPageComponent implements OnInit {
         break
       case CustomerType.lead:
         this.customerType.set(CustomerType.lead)
+        break
+      default:
         break
     }
   }

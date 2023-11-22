@@ -1,22 +1,23 @@
-import { Injectable } from '@angular/core'
-
-import { createEffect, Actions, ofType } from '@ngrx/effects'
+import { Actions, createEffect, ofType } from '@ngrx/effects'
 import {
   CustomerActionType,
-  LoadCustomerSuccess,
   LoadCustomerFailed,
+  LoadCustomerSuccess,
   PostCustomer,
   PostCustomerSuccess,
 } from '../actions'
-
-import { switchMap, map, catchError } from 'rxjs/operators'
-import { of } from 'rxjs'
-import { HttpService } from 'src/app/services'
+import { catchError, map, switchMap } from 'rxjs/operators'
 import { Customer } from 'src/core/customer'
+import { HttpService } from 'src/app/services'
+import { Injectable } from '@angular/core'
+import { of } from 'rxjs'
 
 @Injectable()
 export class CustomerEffect {
-  constructor(private http: HttpService, private actions$: Actions) {}
+  constructor(
+    private readonly http: HttpService,
+    private readonly actions$: Actions,
+  ) {}
 
   public loadCustomer$ = createEffect(() =>
     this.actions$.pipe(
@@ -24,10 +25,10 @@ export class CustomerEffect {
       switchMap(() =>
         this.getCustomers().pipe(
           map(customers => new LoadCustomerSuccess(customers)),
-          catchError(error => of(new LoadCustomerFailed(error)))
-        )
-      )
-    )
+          catchError(error => of(new LoadCustomerFailed(error))),
+        ),
+      ),
+    ),
   )
 
   public postCustomer$ = createEffect(() =>
@@ -36,11 +37,11 @@ export class CustomerEffect {
       map((action: PostCustomer) => action.payload),
       switchMap(payload =>
         this.postCustomers(payload).pipe(
-          map(_ => new PostCustomerSuccess()),
-          catchError(error => of(new LoadCustomerFailed(error)))
-        )
-      )
-    )
+          map(() => new PostCustomerSuccess()),
+          catchError(error => of(new LoadCustomerFailed(error))),
+        ),
+      ),
+    ),
   )
 
   public getCustomers() {

@@ -1,11 +1,11 @@
-import { ValidatorFn, AbstractControl } from '@angular/forms'
+import { AbstractControl, ValidatorFn } from '@angular/forms'
 
 export function nameValidator(): ValidatorFn {
-  // matching alphabets and space
-  const reg = /^[a-zA-z\ ]{3,}$/g
+  // Matching alphabets and space
+  const reg = /^[a-zA-z\ ]{3,}$/gu
 
-  return (control: AbstractControl): { [key: string]: any } | null => {
+  return (control: AbstractControl): Record<string, any> | null => {
     const allowed = control.value.match(reg)
-    return !!allowed ? null : { Name: { value: 'Invalid Name' } }
+    return allowed ? null : { Name: { value: 'Invalid Name' } }
   }
 }

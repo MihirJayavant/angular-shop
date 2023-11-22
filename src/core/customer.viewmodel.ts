@@ -1,4 +1,4 @@
-import { CustomerType, Bill, Customer } from './customer'
+import { Bill, Customer, CustomerType } from './customer'
 
 export interface CustomerViewModel {
   id: string
@@ -13,13 +13,13 @@ export interface CustomerViewModel {
 
 export function convertToCustomerViewModel(customer: Customer): CustomerViewModel {
   const temp: CustomerViewModel = {
-    id: customer.id,
-    name: customer.name,
-    email: customer.email,
-    mobile: customer.mobile,
-    type: customer.type,
-    dateCreated: customer.dateCreated,
     avatar: 'https://bulma.io/images/placeholders/128x128.png',
+    dateCreated: customer.dateCreated,
+    email: customer.email,
+    id: customer.id,
+    mobile: customer.mobile,
+    name: customer.name,
+    type: customer.type,
   }
   if (customer.type === CustomerType.basic) {
     temp.avatar = customer.avatar

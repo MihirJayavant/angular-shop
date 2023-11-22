@@ -1,5 +1,5 @@
-import { Pipe, PipeTransform } from '@angular/core'
 import { Customer, CustomerType } from 'src/core/customer'
+import { Pipe, PipeTransform } from '@angular/core'
 
 @Pipe({
   name: 'filterCustomerType',
@@ -15,9 +15,9 @@ export class FilterCustomerTypePipe implements PipeTransform {
       case 'All':
         return value
       case CustomerType.basic:
-        return value.filter(p => (!!p ? p.type === CustomerType.basic : false))
+        return value.filter(data => (data ? data.type === CustomerType.basic : false))
       case CustomerType.lead:
-        return value.filter(p => (!!p ? p.type === CustomerType.lead : false))
+        return value.filter(data => (data ? data.type === CustomerType.lead : false))
       default:
         return value
     }

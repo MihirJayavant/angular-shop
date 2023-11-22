@@ -1,7 +1,7 @@
-import { RouterReducerState, routerReducer, RouterStateSerializer } from '@ngrx/router-store'
-import { Params, RouterStateSnapshot } from '@angular/router'
 import { ActionReducerMap, createFeatureSelector } from '@ngrx/store'
-import { Injectable } from "@angular/core";
+import { Params, RouterStateSnapshot } from '@angular/router'
+import { RouterReducerState, RouterStateSerializer, routerReducer } from '@ngrx/router-store'
+import { Injectable } from '@angular/core'
 
 export interface RouterStateUrl {
   url: string
@@ -14,23 +14,22 @@ export interface State {
 }
 
 export const reducers: ActionReducerMap<State, any> = {
-  routerReducer: routerReducer
+  routerReducer,
 }
 
-export const getRouterState = createFeatureSelector<RouterReducerState<RouterStateUrl>>(
-  'routerReducer'
-)
+export const getRouterState =
+  createFeatureSelector<RouterReducerState<RouterStateUrl>>('routerReducer')
 
 @Injectable()
 export class CustomSerializer implements RouterStateSerializer<RouterStateUrl> {
   public serialize(routerState: RouterStateSnapshot): RouterStateUrl {
-    const { url } = routerState
-    const { queryParams } = routerState.root
+    const { url } = routerState,
+      { queryParams } = routerState.root
 
     let state = routerState.root
     while (state.firstChild) state = state.firstChild
 
     const { params } = state
-    return { url, params, queryParams }
+    return { params, queryParams, url }
   }
 }

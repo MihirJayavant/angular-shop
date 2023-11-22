@@ -1,6 +1,7 @@
+/* eslint-disable default-param-last */
+import { CustomerAction, CustomerActionType } from './../actions'
 import { IAsyncData, getInitialState, withReducer } from 'src/core/async-data-state'
 import { Customer } from 'src/core/customer'
-import { CustomerAction, CustomerActionType } from './../actions'
 
 export interface CustomerState extends IAsyncData<Customer[]> {
   postLoading: boolean

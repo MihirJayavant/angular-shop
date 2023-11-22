@@ -1,14 +1,12 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core'
+import { ChangeDetectionStrategy, Component } from '@angular/core'
 import { LoginComponent } from '../../components/login/login.component'
 
 @Component({
-  selector: 'app-home-page',
-  templateUrl: './home-page.component.html',
-  styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
   imports: [LoginComponent],
+  selector: 'app-home-page',
+  standalone: true,
+  styles: [],
+  templateUrl: './home-page.component.html',
 })
-export class HomePageComponent {
-  constructor() {}
-}
+export class HomePageComponent {}

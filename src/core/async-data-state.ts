@@ -1,10 +1,11 @@
 import { Action } from '@ngrx/store'
 
+// eslint-disable-next-line no-shadow
 export enum AsyncDataStateType {
   INITIAL = 'Initial',
   LOADED = 'Loaded',
   LOADING = 'Loading',
-  ERROR = 'Error'
+  ERROR = 'Error',
 }
 
 export interface IAsyncData<T> {
@@ -17,7 +18,7 @@ export function getInitialState<T>(data: T): IAsyncData<T> {
   return {
     data,
     dataState: AsyncDataStateType.INITIAL,
-    error: ''
+    error: '',
   }
 }
 
@@ -33,13 +34,13 @@ export interface IAsyncDataErrorAction extends Action {
 }
 
 export type AsyncDataAction<T> =
+  | IAsyncDataErrorAction
   | IAsyncDataLoadAction
   | IAsyncDataSuccessAction<T>
-  | IAsyncDataErrorAction
 
 type baseReducerFn<TData, TState extends IAsyncData<TData>> = (
   state: TState | undefined,
-  action: any
+  action: any,
 ) => TState
 
 export interface IAsyncDataActionType {
@@ -54,29 +55,33 @@ function updateObj(state: any, value: any): any {
 
 export function withReducer<TData, TState extends IAsyncData<TData>>(
   baseReducer: baseReducerFn<TData, TState>,
-  actionType: IAsyncDataActionType
+  actionType: IAsyncDataActionType,
 ) {
   return (state: TState, action: AsyncDataAction<TData>) => {
+    let newState = state
     switch (action.type) {
       case actionType.loadActionType:
-        state = updateObj(state, {
+        newState = updateObj(state, {
           dataState: AsyncDataStateType.LOADING,
-          error: ''
+          error: '',
         })
         break
       case actionType.successActionType:
-        state = updateObj(state, {
+        newState = updateObj(state, {
           data: (action as IAsyncDataSuccessAction<TData>).data,
           dataState: AsyncDataStateType.LOADED,
-          error: ''
+          error: '',
         })
         break
       case actionType.errorActionType:
-        state = updateObj(state, {
+        newState = updateObj(state, {
           dataState: AsyncDataStateType.ERROR,
-          error: (action as IAsyncDataErrorAction).error
+          error: (action as IAsyncDataErrorAction).error,
         })
+        break
+      default:
+        break
     }
-    return baseReducer(state, action)
+    return baseReducer(newState, action)
   }
 }

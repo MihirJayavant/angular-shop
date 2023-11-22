@@ -1,6 +1,7 @@
+// eslint-disable-next-line no-shadow
 export enum CustomerType {
   basic = 'Customer',
-  lead = 'Lead'
+  lead = 'Lead',
 }
 export interface CustomerBase {
   id: string

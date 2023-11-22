@@ -1,6 +1,5 @@
-import { ActionReducerMap } from '@ngrx/store'
-
 import * as fromCustomer from './customer.reducer'
+import { ActionReducerMap } from '@ngrx/store'
 import { CustomerAction } from '../actions'
 
 export * from './customer.reducer'
@@ -10,5 +9,5 @@ export interface DashboardState {
 }
 
 export const reducers: ActionReducerMap<DashboardState, CustomerAction> = {
-  customers: fromCustomer.reducer
+  customers: fromCustomer.reducer,
 }

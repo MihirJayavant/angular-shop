@@ -1,11 +1,12 @@
-import { Directive, HostListener, Input, HostBinding, OnInit } from '@angular/core'
+/* eslint-disable no-magic-numbers */
+import { Directive, HostBinding, HostListener, Input, OnInit } from '@angular/core'
 
 @Directive({
-    selector: '[sharedHeight]',
-    standalone: true
+  selector: '[appSharedHeight]',
+  standalone: true,
 })
 export class HeightDirective implements OnInit {
-  @Input('sharedHeight') reducedAmount = 0
+  @Input() reducedAmount = 0
 
   @HostBinding('style.height.px') height = 100
 
@@ -15,7 +16,7 @@ export class HeightDirective implements OnInit {
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
-    const h = event.target.innerHeight
-    this.height = h - this.reducedAmount
+    const height = event.target.innerHeight
+    this.height = height - this.reducedAmount
   }
 }

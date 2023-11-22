@@ -1,41 +1,44 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core'
-import { Store } from '@ngrx/store'
+import { ChangeDetectionStrategy, Component } from '@angular/core'
 import { CustomerState, PostCustomer } from '../store'
-import { FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms'
-
-import { nameValidator } from './form.validators'
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms'
 import { CustomerType } from 'src/core/customer'
+import { Store } from '@ngrx/store'
+import { nameValidator } from './form.validators'
 
 @Component({
-  selector: 'app-customer-forms-page',
-  templateUrl: './customer-forms-page.component.html',
-  styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
   imports: [ReactiveFormsModule],
+  selector: 'app-customer-forms-page',
+  standalone: true,
+  styles: [],
+  templateUrl: './customer-forms-page.component.html',
 })
 export class CustomerFormsPageComponent {
   public customerType = [CustomerType.basic, CustomerType.lead]
 
   public form = this.formBuilder.group({
-    name: ['', [Validators.required, nameValidator()]],
     email: ['', [Validators.required, Validators.email]],
     mobile: ['', [Validators.required]],
+    name: ['', [Validators.required, nameValidator()]],
   })
 
-  constructor(private store: Store<CustomerState>, private formBuilder: FormBuilder) {}
+  constructor(
+    private readonly store: Store<CustomerState>,
+    private readonly formBuilder: FormBuilder,
+  ) {}
 
   public onSubmit() {
-    const value = this.form.value
+    const { value } = this.form
+    const thousand = 1000
     this.store.dispatch(
       new PostCustomer({
-        id: Math.random() * 1000 + '',
-        type: CustomerType.lead,
         dateCreated: '2/5/2018',
         email: value.email ?? '',
+        id: `${Math.random() * thousand}`,
         mobile: value.mobile ?? '',
         name: value.name ?? '',
-      })
+        type: CustomerType.lead,
+      }),
     )
   }
 

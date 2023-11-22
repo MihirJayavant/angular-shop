@@ -1,26 +1,25 @@
+/* eslint-disable no-magic-numbers */
+import { BasicCustomer, Customer, CustomerType, Lead } from 'src/core/customer'
 import { FilterCustomerTypePipe } from './filter-customer-type.pipe'
-import { Customer, Lead, CustomerType, BasicCustomer } from '../models'
 
 const lead: Lead = {
-  id: '1',
   dateCreated: '2/4/2018',
   email: 'shank@e.com',
-  name: 'shank',
+  id: '1',
   mobile: '5643',
+  name: 'shank',
   type: CustomerType.lead,
 }
-
 const basic: BasicCustomer = {
-  id: '2',
-  dateCreated: '5/6/2019',
-  email: 'abhijit@e.com',
-  name: 'abhijit',
-  mobile: '56433',
-  type: CustomerType.basic,
   avatar: '',
   billsHistory: [],
+  dateCreated: '5/6/2019',
+  email: 'abhijit@e.com',
+  id: '2',
+  mobile: '56433',
+  name: 'abhijit',
+  type: CustomerType.basic,
 }
-
 const customerList: Customer[] = [lead, basic]
 const pipe = new FilterCustomerTypePipe()
 

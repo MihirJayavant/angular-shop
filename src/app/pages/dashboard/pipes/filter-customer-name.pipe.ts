@@ -6,15 +6,14 @@ import { Customer } from 'src/core/customer'
   standalone: true,
 })
 export class FilterCustomerNamePipe implements PipeTransform {
-  public transform(value: Customer[] | null, searchText: string): Customer[] {
-    searchText = searchText.trim().toLowerCase()
+  public transform(value: Customer[] | null | undefined, searchText: string): Customer[] {
+    const search = searchText.trim().toLowerCase()
 
-    if (value == null) {
+    if (!value) {
       return []
     } else if (searchText === '') {
       return value
-    } else {
-      return value.filter(p => (!!p ? p.name.toLowerCase().startsWith(searchText) : false))
     }
+    return value.filter(data => (data ? data.name.toLowerCase().startsWith(search) : false))
   }
 }

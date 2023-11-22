@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
+import { Injectable } from '@angular/core'
 import { environment } from 'src/environments/environment'
 
 @Injectable()
 export class HttpService {
-  private baseUrl = environment.baseUrl
+  private readonly baseUrl = environment.baseUrl
 
   constructor(private http: HttpClient) {}
 

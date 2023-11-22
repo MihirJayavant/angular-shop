@@ -1,9 +1,10 @@
-import { Action } from '@ngrx/store'
+/* eslint-disable no-shadow */
 import {
+  IAsyncDataErrorAction,
   IAsyncDataLoadAction,
   IAsyncDataSuccessAction,
-  IAsyncDataErrorAction,
 } from 'src/core/async-data-state'
+import { Action } from '@ngrx/store'
 import { Customer } from 'src/core/customer'
 
 export enum CustomerActionType {
@@ -26,10 +27,12 @@ export class LoadCustomerSuccess implements IAsyncDataSuccessAction<Customer[]> 
 
 export class LoadCustomerFailed implements IAsyncDataErrorAction {
   public readonly type = CustomerActionType.ERROR
+
   constructor(public error: string) {}
 }
 export class PostCustomer implements Action {
   public readonly type = CustomerActionType.POST
+
   constructor(public payload: Customer) {}
 }
 export class PostCustomerSuccess implements Action {
@@ -38,7 +41,7 @@ export class PostCustomerSuccess implements Action {
 
 export type CustomerAction =
   | LoadCustomer
-  | LoadCustomerSuccess
   | LoadCustomerFailed
+  | LoadCustomerSuccess
   | PostCustomer
   | PostCustomerSuccess

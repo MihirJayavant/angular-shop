@@ -1,24 +1,24 @@
-import { Component, OnInit } from '@angular/core'
+import { Component } from '@angular/core'
+import { FormsModule } from '@angular/forms'
+import { NgClass } from '@angular/common'
 import { Router } from '@angular/router'
-import { NgClass } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 
 @Component({
-    selector: 'app-login',
-    templateUrl: './login.component.html',
-    styles: [],
-    standalone: true,
-    imports: [FormsModule, NgClass]
+  imports: [FormsModule, NgClass],
+  selector: 'app-login',
+  standalone: true,
+  styles: [],
+  templateUrl: './login.component.html',
 })
 export class LoginComponent {
   public formData = {
     email: '',
-    password: ''
+    password: '',
   }
 
-  constructor(private router: Router) {}
+  constructor(private readonly router: Router) {}
 
-  public onLogin(form: any) {
+  public onLogin() {
     this.router.navigate(['/dashboard'])
   }
 }

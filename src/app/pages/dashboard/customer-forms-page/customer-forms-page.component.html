@@ -2,25 +2,43 @@
   <div class="column is-half">
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <div class="field">
-        <label class="label">Name</label>
+        <label class="label" for="fullname">Name</label>
         <div class="control has-icons-left">
-          <input class="input" type="text" placeholder="Full Name" formControlName="name" />
+          <input
+            class="input"
+            type="text"
+            placeholder="Full Name"
+            formControlName="name"
+            id="fullname"
+          />
           <span class="icon is-small is-left"> <i class="fas fa-user"></i> </span>
         </div>
       </div>
 
       <div class="field">
-        <label class="label">Email</label>
+        <label class="label" for="email">Email</label>
         <div class="control has-icons-left">
-          <input class="input" type="email" placeholder="Email" formControlName="email" />
+          <input
+            class="input"
+            type="email"
+            placeholder="Email"
+            formControlName="email"
+            id="email"
+          />
           <span class="icon is-small is-left"> <i class="fas fa-envelope"></i> </span>
         </div>
       </div>
 
       <div class="field">
-        <label class="label">Mobile</label>
+        <label class="label" for="mobile">Mobile</label>
         <div class="control has-icons-left">
-          <input class="input" type="text" placeholder="Mobile Number" formControlName="mobile" />
+          <input
+            class="input"
+            type="text"
+            placeholder="Mobile Number"
+            formControlName="mobile"
+            id="mobile"
+          />
           <span class="icon is-small is-left"> <i class="fas fa-mobile-alt"></i> </span>
         </div>
       </div>

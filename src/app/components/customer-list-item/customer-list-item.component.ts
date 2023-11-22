@@ -1,27 +1,28 @@
-import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core'
-import { Customer } from 'src/core/customer'
+/* eslint-disable accessor-pairs */
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core'
 import { CustomerViewModel, convertToCustomerViewModel } from 'src/core/customer.viewmodel'
+import { Customer } from 'src/core/customer'
 import { NgOptimizedImage } from '@angular/common'
 
 @Component({
-  selector: 'app-customer-list-item',
-  templateUrl: './customer-list-item.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
   imports: [NgOptimizedImage],
+  selector: 'app-customer-list-item',
+  standalone: true,
+  templateUrl: './customer-list-item.component.html',
 })
 export class CustomerListItemComponent {
-  public _customer!: CustomerViewModel
+  public customerData!: CustomerViewModel
 
   @Input({ required: true })
   public set customer(value: Customer) {
-    this._customer = convertToCustomerViewModel(value)
+    this.customerData = convertToCustomerViewModel(value)
   }
 
   @Output()
-  public select = new EventEmitter<CustomerViewModel>()
+  public selectCustomer = new EventEmitter<CustomerViewModel>()
 
   public onclick() {
-    this.select.emit(this._customer)
+    this.selectCustomer.emit(this.customerData)
   }
 }

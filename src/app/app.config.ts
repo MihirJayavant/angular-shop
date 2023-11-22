@@ -1,15 +1,14 @@
-import { ApplicationConfig } from '@angular/core'
-import { routes } from './app.routes'
-import { provideEffects } from '@ngrx/effects'
-import { provideState, provideStore } from '@ngrx/store'
-import { provideRouter } from '@angular/router'
-import { withInterceptorsFromDi, provideHttpClient, withFetch } from '@angular/common/http'
-import { provideAnimations } from '@angular/platform-browser/animations'
 import { CustomSerializer, reducers } from './store'
-import { RouterStateSerializer } from '@ngrx/router-store'
+import { provideHttpClient, withFetch, withInterceptorsFromDi } from '@angular/common/http'
+import { provideState, provideStore } from '@ngrx/store'
+import { ApplicationConfig } from '@angular/core'
 import { HttpService } from './services'
-
+import { RouterStateSerializer } from '@ngrx/router-store'
+import { provideAnimations } from '@angular/platform-browser/animations'
 import { provideClientHydration } from '@angular/platform-browser'
+import { provideEffects } from '@ngrx/effects'
+import { provideRouter } from '@angular/router'
+import { routes } from './app.routes'
 
 export const appConfig: ApplicationConfig = {
   providers: [

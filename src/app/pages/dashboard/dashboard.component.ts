@@ -1,20 +1,20 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core'
-import { trigger, transition, query, style, group, animate } from '@angular/animations'
-import { RouterOutlet, RouterLinkActive, RouterLink } from '@angular/router'
+import { ChangeDetectionStrategy, Component } from '@angular/core'
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router'
+import { animate, group, query, style, transition, trigger } from '@angular/animations'
 import { NavbarComponent } from '../../components'
 
 export const routerTransition = trigger('routerTransition', [
   transition('FormsPage => DisplayPage', [
     query(':enter, :leave', style({ position: 'fixed', width: '100%' }), { optional: true }),
     group([
-      // block executes in parallel
+      // Block executes in parallel
       query(
         ':enter',
         [
           style({ transform: 'translateX(100%)' }),
           animate('0.5s ease-in-out', style({ transform: 'translateX(0%)' })),
         ],
-        { optional: true }
+        { optional: true },
       ),
       query(
         ':leave',
@@ -22,21 +22,21 @@ export const routerTransition = trigger('routerTransition', [
           style({ transform: 'translateX(0%)' }),
           animate('0.5s ease-in-out', style({ transform: 'translateX(-100%)' })),
         ],
-        { optional: true }
+        { optional: true },
       ),
     ]),
   ]),
   transition('DisplayPage => FormsPage', [
     query(':enter, :leave', style({ position: 'fixed', width: '100%' }), { optional: true }),
     group([
-      // block executes in parallel
+      // Block executes in parallel
       query(
         ':enter',
         [
           style({ transform: 'translateX(-100%)' }),
           animate('0.5s ease-in-out', style({ transform: 'translateX(0%)' })),
         ],
-        { optional: true }
+        { optional: true },
       ),
       query(
         ':leave',
@@ -44,25 +44,26 @@ export const routerTransition = trigger('routerTransition', [
           style({ transform: 'translateX(0%)' }),
           animate('0.5s ease-in-out', style({ transform: 'translateX(100%)' })),
         ],
-        { optional: true }
+        { optional: true },
       ),
     ]),
   ]),
 ])
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styles: '',
   animations: [routerTransition],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
   imports: [NavbarComponent, RouterLinkActive, RouterLink, RouterOutlet],
+  selector: 'app-dashboard',
+  standalone: true,
+  styles: '',
+  templateUrl: './dashboard.component.html',
 })
 export class DashboardComponent {
   constructor() {}
 
   public getState(outlet: RouterOutlet) {
+    // eslint-disable-next-line dot-notation
     return outlet.activatedRouteData['animation']
   }
 }

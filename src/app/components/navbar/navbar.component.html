@@ -1,8 +1,13 @@
 <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
-
   <div class="navbar-brand">
     <ng-content select="div.head"></ng-content>
-    <div class="navbar-burger burger" (click)="onMenuClick()" [sharedActive]="isActive">
+    <div
+      role="button"
+      aria-hidden="true"
+      class="navbar-burger burger"
+      (click)="onMenuClick()"
+      [sharedActive]="isActive"
+    >
       <span></span>
       <span></span>
       <span></span>
@@ -10,9 +15,7 @@
   </div>
 
   <div class="navbar-menu" [sharedActive]="isActive">
-
     <ng-content select="div.navbar-start"></ng-content>
     <ng-content select="div.navbar-end"></ng-content>
-
   </div>
 </nav>

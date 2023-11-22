@@ -3,12 +3,12 @@
     <ng-content select="shared-master-caption"></ng-content>
     <div class="scroll-y h100">
       @for (item of dataList; track item) {
-      <div @items>
-        <ng-container
-          *ngTemplateOutlet="masterItemTemplate; context: { $implicit: item }"
-        ></ng-container>
-        <div class="divider"></div>
-      </div>
+        <div @items>
+          <ng-container
+            *ngTemplateOutlet="masterItemTemplate; context: { $implicit: item }"
+          ></ng-container>
+          <div class="divider"></div>
+        </div>
       }
     </div>
   </div>

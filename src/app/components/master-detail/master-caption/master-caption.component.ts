@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core'
+import { Component } from '@angular/core'
 
 @Component({
-    selector: 'shared-master-caption',
-    templateUrl: './master-caption.component.html',
-    standalone: true
+  selector: 'app-master-caption',
+  standalone: true,
+  templateUrl: './master-caption.component.html',
 })
 export class MasterCaptionComponent {}

@@ -1,12 +1,8 @@
-import { Component, OnInit } from '@angular/core'
+import { Component } from '@angular/core'
 
 @Component({
-    selector: 'shared-detail',
-    templateUrl: './detail.component.html',
-    standalone: true
+  selector: 'app-detail',
+  standalone: true,
+  templateUrl: './detail.component.html',
 })
-export class DetailComponent implements OnInit {
-  constructor() {}
-
-  ngOnInit() {}
-}
+export class DetailComponent {}
