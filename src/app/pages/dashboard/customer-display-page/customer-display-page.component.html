@@ -27,7 +27,10 @@
       </div>
     </app-master-caption>
     <app-master *appMasterItem="let item">
-      <app-customer-list-item [customer]="item" (select)="onClick($event)"></app-customer-list-item>
+      <app-customer-list-item
+        [customer]="item"
+        (selectCustomer)="onClick($event)"
+      ></app-customer-list-item>
     </app-master>
     <app-detail>
       <app-customer-details [customer]="selectedCustomer()"></app-customer-details>

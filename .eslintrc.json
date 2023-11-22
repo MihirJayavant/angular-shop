@@ -19,9 +19,10 @@
         "new-cap": "off",
         "class-methods-use-this": "off",
         "max-classes-per-file": "off",
-        "@typescript-eslint/no-explicit-any": "off",
         "no-useless-constructor": "off",
         "no-empty-function": "off",
+        "require-unicode-regexp": "off",
+        "@typescript-eslint/no-explicit-any": "off",
         "@angular-eslint/template/click-events-have-key-events": "off",
         "@angular-eslint/directive-selector": [
           "error",
