@@ -1,0 +1,16 @@
+<div class="columns is-gapless h100">
+  <div class="column is-4 is-3-desktop master">
+    <ng-content select="app-master-caption"></ng-content>
+    <div class="scroll-y h100">
+      @for (item of dataList; track item) {
+        <div @items>
+          <ng-container
+            *ngTemplateOutlet="masterItemTemplate; context: { $implicit: item }"
+          ></ng-container>
+          <div class="divider"></div>
+        </div>
+      }
+    </div>
+  </div>
+  <div class="column is-8 is-9-desktop"><ng-content select="app-detail"></ng-content></div>
+</div>

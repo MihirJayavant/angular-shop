@@ -1,0 +1,39 @@
+<div class="master-details">
+  <app-master-detail
+    [dataList]="customers() | filterCustomerType: customerType() | filterCustomerName: searchText()"
+  >
+    <app-master-caption>
+      <div class="customer-caption">
+        <div class="field has-addons">
+          <p class="control is-expanded">
+            <input
+              class="input"
+              type="text"
+              placeholder="Search by name"
+              [ngModel]="searchText()"
+              (ngModelChange)="searchText.set($event)"
+            />
+          </p>
+          <p class="control">
+            <span class="select">
+              <select (change)="onTypeChange($event)">
+                @for (item of customerTypeNames; track item) {
+                  <option [value]="item">{{ item }}</option>
+                }
+              </select>
+            </span>
+          </p>
+        </div>
+      </div>
+    </app-master-caption>
+    <app-master *appMasterItem="let item">
+      <app-customer-list-item
+        [customer]="item"
+        (selectCustomer)="onClick($event)"
+      ></app-customer-list-item>
+    </app-master>
+    <app-detail>
+      <app-customer-details [customer]="selectedCustomer()"></app-customer-details>
+    </app-detail>
+  </app-master-detail>
+</div>

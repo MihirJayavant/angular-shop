@@ -1,0 +1,13 @@
+<div aria-hidden="true" class="customer-item item-hover" (click)="onclick()">
+  <div class="columns">
+    <div class="column is-narrow">
+      <figure class="image is-48x48">
+        <img class="is-rounded" [ngSrc]="customerData.avatar" fill [alt]="customerData.name" />
+      </figure>
+    </div>
+    <div class="column">
+      <span>{{ customerData.name }}</span> <br />
+      <span>{{ customerData.type }}</span>
+    </div>
+  </div>
+</div>

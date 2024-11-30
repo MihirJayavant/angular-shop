@@ -1,0 +1,54 @@
+{
+  "root": true,
+  "ignorePatterns": ["projects/**/*"],
+  "overrides": [
+    {
+      "files": ["*.ts"],
+      "extends": [
+        "eslint:all",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@angular-eslint/recommended",
+        "plugin:@angular-eslint/template/process-inline-templates",
+        "plugin:prettier/recommended"
+      ],
+      "rules": {
+        "no-console": "warn",
+        "no-ternary": "off",
+        "func-style": ["off"],
+        "one-var": "off",
+        "new-cap": "off",
+        "class-methods-use-this": "off",
+        "max-classes-per-file": "off",
+        "no-useless-constructor": "off",
+        "no-empty-function": "off",
+        "require-unicode-regexp": "off",
+        "@typescript-eslint/no-explicit-any": "off",
+        "@angular-eslint/template/click-events-have-key-events": "off",
+        "@angular-eslint/directive-selector": [
+          "error",
+          {
+            "type": "attribute",
+            "prefix": "app",
+            "style": "camelCase"
+          }
+        ],
+        "@angular-eslint/component-selector": [
+          "error",
+          {
+            "type": "element",
+            "prefix": "app",
+            "style": "kebab-case"
+          }
+        ]
+      }
+    },
+    {
+      "files": ["*.html"],
+      "extends": [
+        "plugin:@angular-eslint/template/recommended",
+        "plugin:@angular-eslint/template/accessibility"
+      ],
+      "rules": {}
+    }
+  ]
+}

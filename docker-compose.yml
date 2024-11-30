@@ -2,9 +2,8 @@ version: '3'
 
 services:
   webapp:
-    restart: always
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: browser.dockerfile
     ports:
       - '5100:80'
