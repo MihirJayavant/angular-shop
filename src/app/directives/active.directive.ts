@@ -1,19 +1,19 @@
-/* eslint-disable accessor-pairs */
-import { Directive, ElementRef, Input, Renderer2 } from '@angular/core'
+import { Directive, ElementRef, Renderer2, effect, input } from '@angular/core'
 
 @Directive({
   selector: '[appActive]',
   standalone: true,
 })
 export class ActiveDirective {
-  @Input()
-  set appActive(value: boolean) {
-    if (value) this.renderer.addClass(this.el.nativeElement, 'is-active')
-    else this.renderer.removeClass(this.el.nativeElement, 'is-active')
-  }
+  appActive = input(false)
 
   constructor(
     private readonly el: ElementRef,
     private readonly renderer: Renderer2,
-  ) {}
+  ) {
+    effect(() => {
+      if (this.appActive()) this.renderer.addClass(this.el.nativeElement, 'is-active')
+      else this.renderer.removeClass(this.el.nativeElement, 'is-active')
+    })
+  }
 }

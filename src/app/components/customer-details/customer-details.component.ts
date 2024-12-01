@@ -1,25 +1,16 @@
-/* eslint-disable accessor-pairs */
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core'
-import { NgIf, NgOptimizedImage } from '@angular/common'
+import { NgOptimizedImage } from '@angular/common'
+import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core'
 import { CustomerViewModel } from 'src/core/customer.viewmodel'
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [NgIf, NgOptimizedImage],
+  imports: [NgOptimizedImage],
   selector: 'app-customer-details',
   standalone: true,
   templateUrl: './customer-details.component.html',
 })
 export class CustomerDetailsComponent {
-  public customerData!: CustomerViewModel
+  public customer = signal<CustomerViewModel | undefined | null>(null)
 
-  public isLoaded = false
-
-  @Input({ required: true })
-  public set customer(value: CustomerViewModel | null | undefined) {
-    if (value) {
-      this.customerData = value
-      this.isLoaded = true
-    } else this.isLoaded = false
-  }
+  public isLoaded = computed(() => Boolean(this.customer()))
 }

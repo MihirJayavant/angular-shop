@@ -1,5 +1,5 @@
-import { Customer, CustomerType } from 'src/core/customer'
 import { Pipe, PipeTransform } from '@angular/core'
+import { Customer, CustomerType } from 'src/core/customer'
 
 @Pipe({
   name: 'filterCustomerType',

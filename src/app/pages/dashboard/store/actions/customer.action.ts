@@ -1,10 +1,10 @@
 /* eslint-disable no-shadow */
+import { Action } from '@ngrx/store'
 import {
   IAsyncDataErrorAction,
   IAsyncDataLoadAction,
   IAsyncDataSuccessAction,
 } from 'src/core/async-data-state'
-import { Action } from '@ngrx/store'
 import { Customer } from 'src/core/customer'
 
 export enum CustomerActionType {

@@ -1,9 +1,9 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core'
 import { CustomerState, PostCustomer } from '../store'
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms'
-import { CustomerType } from 'src/core/customer'
-import { Store } from '@ngrx/store'
 import { nameValidator } from './form.validators'
+import { ChangeDetectionStrategy, Component } from '@angular/core'
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms'
+import { Store } from '@ngrx/store'
+import { CustomerType } from 'src/core/customer'
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,

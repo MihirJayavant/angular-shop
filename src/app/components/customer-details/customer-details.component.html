@@ -1,21 +1,16 @@
-@if (isLoaded) {
+@if (isLoaded()) {
   <div class="hero is-primary">
     <div class="hero-body">
       <div class="container">
         <div class="columns">
           <div class="column is-narrow">
             <figure class="image is-128x128">
-              <img
-                class="is-rounded"
-                [ngSrc]="customerData.avatar"
-                fill
-                [alt]="customerData.name"
-              />
+              <img class="is-rounded" [ngSrc]="customer()!.avatar" fill [alt]="customer()!.name" />
             </figure>
           </div>
           <div class="column">
-            <h1 class="title">{{ customerData.name }}</h1>
-            <h2 class="subtitle">{{ customerData.type }}</h2>
+            <h1 class="title">{{ customer()!.name }}</h1>
+            <h2 class="subtitle">{{ customer()!.type }}</h2>
           </div>
         </div>
       </div>

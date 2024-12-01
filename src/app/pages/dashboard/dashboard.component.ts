@@ -1,7 +1,7 @@
+import { NavbarComponent } from '../../components'
+import { animate, group, query, style, transition, trigger } from '@angular/animations'
 import { ChangeDetectionStrategy, Component } from '@angular/core'
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router'
-import { animate, group, query, style, transition, trigger } from '@angular/animations'
-import { NavbarComponent } from '../../components'
 
 export const routerTransition = trigger('routerTransition', [
   transition('FormsPage => DisplayPage', [

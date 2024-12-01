@@ -1,6 +1,6 @@
 /* eslint-disable no-magic-numbers */
-import { BasicCustomer, Customer, CustomerType, Lead } from 'src/core/customer'
 import { FilterCustomerTypePipe } from './filter-customer-type.pipe'
+import { BasicCustomer, Customer, CustomerType, Lead } from 'src/core/customer'
 
 const lead: Lead = {
   dateCreated: '2/4/2018',

@@ -2,12 +2,12 @@
   <div class="columns">
     <div class="column is-narrow">
       <figure class="image is-48x48">
-        <img class="is-rounded" [ngSrc]="customerData.avatar" fill [alt]="customerData.name" />
+        <img class="is-rounded" [ngSrc]="customer().avatar" fill [alt]="customer().name" />
       </figure>
     </div>
     <div class="column">
-      <span>{{ customerData.name }}</span> <br />
-      <span>{{ customerData.type }}</span>
+      <span>{{ customer().name }}</span> <br />
+      <span>{{ customer().type }}</span>
     </div>
   </div>
 </div>

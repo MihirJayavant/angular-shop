@@ -1,4 +1,3 @@
-import { Actions, createEffect, ofType } from '@ngrx/effects'
 import {
   CustomerActionType,
   LoadCustomerFailed,
@@ -6,11 +5,12 @@ import {
   PostCustomer,
   PostCustomerSuccess,
 } from '../actions'
-import { catchError, map, switchMap } from 'rxjs/operators'
-import { Customer } from 'src/core/customer'
-import { HttpService } from 'src/app/services'
 import { Injectable } from '@angular/core'
+import { Actions, createEffect, ofType } from '@ngrx/effects'
 import { of } from 'rxjs'
+import { catchError, map, switchMap } from 'rxjs/operators'
+import { HttpService } from 'src/app/services'
+import { Customer } from 'src/core/customer'
 
 @Injectable()
 export class CustomerEffect {

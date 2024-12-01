@@ -1,6 +1,6 @@
+import { CustomerAction } from '../actions'
 import * as fromCustomer from './customer.reducer'
 import { ActionReducerMap } from '@ngrx/store'
-import { CustomerAction } from '../actions'
 
 export * from './customer.reducer'
 

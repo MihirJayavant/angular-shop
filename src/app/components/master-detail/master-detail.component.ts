@@ -1,8 +1,8 @@
 /* eslint-disable sort-keys */
-import { Component, ContentChild, Input, TemplateRef } from '@angular/core'
-import { NgFor, NgTemplateOutlet } from '@angular/common'
-import { animate, style, transition, trigger } from '@angular/animations'
 import { MasterItemDirective } from '../../directives'
+import { animate, style, transition, trigger } from '@angular/animations'
+import { NgFor, NgTemplateOutlet } from '@angular/common'
+import { Component, ContentChild, Input, TemplateRef } from '@angular/core'
 
 @Component({
   animations: [

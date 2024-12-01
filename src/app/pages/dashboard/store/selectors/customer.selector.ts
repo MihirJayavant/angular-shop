@@ -1,5 +1,5 @@
-import { createSelector } from '@ngrx/store'
 import { getDashboardState } from './dashboard.selector'
+import { createSelector } from '@ngrx/store'
 
 export const getCustomerState = createSelector(getDashboardState, state => state.customers)
 

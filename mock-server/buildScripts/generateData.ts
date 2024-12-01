@@ -1,10 +1,9 @@
-import * as fs from 'fs'
-
 import { basicCustomerSchema } from './basicCustomerSchema'
-import { leadSchema } from './leadSchema'
 import { combineSchema } from './helper'
-import { JSONSchemaFaker } from 'json-schema-faker'
+import { leadSchema } from './leadSchema'
 import * as faker from '@faker-js/faker'
+import * as fs from 'fs'
+import { JSONSchemaFaker } from 'json-schema-faker'
 
 JSONSchemaFaker.extend('faker', () => faker)
 const compiledBasicCustomerSchema = JSONSchemaFaker.generate(basicCustomerSchema as any) as any[]

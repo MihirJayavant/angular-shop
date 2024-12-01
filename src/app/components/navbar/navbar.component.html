@@ -6,7 +6,7 @@
       aria-hidden="true"
       class="navbar-burger burger"
       (click)="onMenuClick()"
-      [appActive]="isActive"
+      [appActive]="isActive()"
     >
       <span></span>
       <span></span>
@@ -14,7 +14,7 @@
     </div>
   </div>
 
-  <div class="navbar-menu" [appActive]="isActive">
+  <div class="navbar-menu" [appActive]="isActive()">
     <ng-content select="div.navbar-start"></ng-content>
     <ng-content select="div.navbar-end"></ng-content>
   </div>

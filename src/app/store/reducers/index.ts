@@ -1,7 +1,7 @@
-import { ActionReducerMap, createFeatureSelector } from '@ngrx/store'
+import { Injectable } from '@angular/core'
 import { Params, RouterStateSnapshot } from '@angular/router'
 import { RouterReducerState, RouterStateSerializer, routerReducer } from '@ngrx/router-store'
-import { Injectable } from '@angular/core'
+import { ActionReducerMap, createFeatureSelector } from '@ngrx/store'
 
 export interface RouterStateUrl {
   url: string

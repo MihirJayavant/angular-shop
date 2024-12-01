@@ -13,6 +13,7 @@
       ],
       "rules": {
         "no-console": "warn",
+        "sort-imports": "off",
         "no-ternary": "off",
         "func-style": ["off"],
         "one-var": "off",

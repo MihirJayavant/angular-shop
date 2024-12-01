@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core'
 import { LoginComponent } from '../../components/login/login.component'
+import { ChangeDetectionStrategy, Component } from '@angular/core'
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -1,14 +1,14 @@
+import { routes } from './app.routes'
+import { HttpService } from './services'
 import { CustomSerializer, reducers } from './store'
 import { provideHttpClient, withFetch, withInterceptorsFromDi } from '@angular/common/http'
-import { provideState, provideStore } from '@ngrx/store'
 import { ApplicationConfig } from '@angular/core'
-import { HttpService } from './services'
-import { RouterStateSerializer } from '@ngrx/router-store'
-import { provideAnimations } from '@angular/platform-browser/animations'
 import { provideClientHydration } from '@angular/platform-browser'
-import { provideEffects } from '@ngrx/effects'
+import { provideAnimations } from '@angular/platform-browser/animations'
 import { provideRouter } from '@angular/router'
-import { routes } from './app.routes'
+import { provideEffects } from '@ngrx/effects'
+import { RouterStateSerializer } from '@ngrx/router-store'
+import { provideState, provideStore } from '@ngrx/store'
 
 export const appConfig: ApplicationConfig = {
   providers: [
