@@ -5,7 +5,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core'
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [LoginComponent],
   selector: 'app-home-page',
-  standalone: true,
   styles: [],
   templateUrl: './home-page.component.html',
 })

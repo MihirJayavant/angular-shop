@@ -6,7 +6,6 @@ import { CustomerViewModel } from 'src/core/customer.viewmodel'
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [NgOptimizedImage],
   selector: 'app-customer-details',
-  standalone: true,
   templateUrl: './customer-details.component.html',
 })
 export class CustomerDetailsComponent {

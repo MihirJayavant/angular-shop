@@ -30,7 +30,6 @@ import { Component, ContentChild, Input, TemplateRef } from '@angular/core'
   ],
   imports: [NgFor, NgTemplateOutlet],
   selector: 'app-master-detail',
-  standalone: true,
   templateUrl: './master-detail.component.html',
 })
 export class MasterDetailComponent {

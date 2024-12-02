@@ -55,7 +55,6 @@ export const routerTransition = trigger('routerTransition', [
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [NavbarComponent, RouterLinkActive, RouterLink, RouterOutlet],
   selector: 'app-dashboard',
-  standalone: true,
   styles: '',
   templateUrl: './dashboard.component.html',
 })

@@ -28,7 +28,6 @@ import { CustomerViewModel } from 'src/core/customer.viewmodel'
     FilterCustomerTypePipe,
   ],
   selector: 'app-customer-display-page',
-  standalone: true,
   styles: [],
   templateUrl: './customer-display-page.component.html',
 })

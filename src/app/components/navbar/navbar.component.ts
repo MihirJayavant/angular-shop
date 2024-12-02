@@ -5,7 +5,6 @@ import { ChangeDetectionStrategy, Component, signal } from '@angular/core'
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [ActiveDirective],
   selector: 'app-navbar',
-  standalone: true,
   templateUrl: './navbar.component.html',
 })
 export class NavbarComponent {

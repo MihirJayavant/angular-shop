@@ -6,7 +6,6 @@ import { Router } from '@angular/router'
 @Component({
   imports: [FormsModule, NgClass],
   selector: 'app-login',
-  standalone: true,
   templateUrl: './login.component.html',
 })
 export class LoginComponent {

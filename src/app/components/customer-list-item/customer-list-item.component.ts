@@ -7,7 +7,6 @@ import { CustomerViewModel, convertToCustomerViewModel } from 'src/core/customer
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [NgOptimizedImage],
   selector: 'app-customer-list-item',
-  standalone: true,
   templateUrl: './customer-list-item.component.html',
 })
 export class CustomerListItemComponent {

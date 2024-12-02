@@ -9,7 +9,6 @@ import { CustomerType } from 'src/core/customer'
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [ReactiveFormsModule],
   selector: 'app-customer-forms-page',
-  standalone: true,
   styles: [],
   templateUrl: './customer-forms-page.component.html',
 })
