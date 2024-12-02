@@ -13,7 +13,8 @@ export interface CustomerViewModel {
 
 export function convertToCustomerViewModel(customer: Customer): CustomerViewModel {
   const temp: CustomerViewModel = {
-    avatar: 'https://bulma.io/images/placeholders/128x128.png',
+    avatar:
+      'https://png.pngtree.com/png-vector/20191101/ourlarge/pngtree-cartoon-color-simple-male-avatar-png-image_1934459.jpg',
     dateCreated: customer.dateCreated,
     email: customer.email,
     id: customer.id,

@@ -1,14 +1,14 @@
 # Server side rendering build
-FROM node:20-alpine as builder
+FROM node:22-alpine as builder
 WORKDIR /app
 COPY package.json .
-COPY yarn.lock .
-RUN yarn
+COPY package-lock.json .
+RUN npm ci
 COPY . .
-RUN yarn run build:ssr
+RUN npm run build:ssr
 
 # Final image
-FROM node:12-alpine
+FROM node:22-alpine
 WORKDIR /app
 COPY --from=builder /app/dist/server /app/dist
 CMD ["node", "dist/server.js"]

@@ -1,5 +1,5 @@
 import { NgOptimizedImage } from '@angular/common'
-import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core'
+import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core'
 import { CustomerViewModel } from 'src/core/customer.viewmodel'
 
 @Component({
@@ -10,7 +10,7 @@ import { CustomerViewModel } from 'src/core/customer.viewmodel'
   templateUrl: './customer-details.component.html',
 })
 export class CustomerDetailsComponent {
-  public customer = signal<CustomerViewModel | undefined | null>(null)
+  public customer = input<CustomerViewModel | undefined | null>(null)
 
   public isLoaded = computed(() => Boolean(this.customer()))
 }

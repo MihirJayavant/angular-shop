@@ -4,7 +4,6 @@ import { MasterItemDirective } from '../../../directives/master-item.directive'
 import { FilterCustomerNamePipe } from '../pipes/filter-customer-name.pipe'
 import { FilterCustomerTypePipe } from '../pipes/filter-customer-type.pipe'
 import { DataService } from '../services'
-import { NgFor } from '@angular/common'
 import { ChangeDetectionStrategy, Component, OnInit, signal } from '@angular/core'
 import { toSignal } from '@angular/core/rxjs-interop'
 import { FormsModule } from '@angular/forms'
@@ -20,7 +19,6 @@ import { CustomerViewModel } from 'src/core/customer.viewmodel'
     MasterDetailComponent,
     MasterCaptionComponent,
     FormsModule,
-    NgFor,
     MasterItemDirective,
     MasterComponent,
     CustomerListItemComponent,
