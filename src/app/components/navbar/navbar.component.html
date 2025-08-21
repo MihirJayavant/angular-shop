@@ -1,6 +1,6 @@
 <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
-    <ng-content select="div.head"></ng-content>
+    <ng-content select="div.head" />
     <div
       role="button"
       aria-hidden="true"
@@ -15,7 +15,7 @@
   </div>
 
   <div class="navbar-menu" [appActive]="isActive()">
-    <ng-content select="div.navbar-start"></ng-content>
-    <ng-content select="div.navbar-end"></ng-content>
+    <ng-content select="div.navbar-start" />
+    <ng-content select="div.navbar-end" />
   </div>
 </nav>

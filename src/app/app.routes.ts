@@ -1,4 +1,3 @@
-import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component'
 import { Routes } from '@angular/router'
 
 export const routes: Routes = [
@@ -13,7 +12,10 @@ export const routes: Routes = [
     path: 'dashboard',
   },
   {
-    component: PageNotFoundComponent,
+    loadComponent: () =>
+      import('./pages/page-not-found/page-not-found.component').then(
+        mod => mod.PageNotFoundComponent,
+      ),
     path: '**',
   },
 ]

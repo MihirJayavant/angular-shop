@@ -2,7 +2,7 @@
 import { MasterItemDirective } from '../../directives'
 import { animate, style, transition, trigger } from '@angular/animations'
 import { NgTemplateOutlet } from '@angular/common'
-import { Component, ContentChild, Input, TemplateRef } from '@angular/core'
+import { Component, TemplateRef, contentChild, input } from '@angular/core'
 
 @Component({
   animations: [
@@ -33,8 +33,7 @@ import { Component, ContentChild, Input, TemplateRef } from '@angular/core'
   templateUrl: './master-detail.component.html',
 })
 export class MasterDetailComponent {
-  @Input({ required: true })
-  dataList: Iterable<any> = []
+  readonly dataList = input.required<Iterable<any>>()
 
-  @ContentChild(MasterItemDirective, { read: TemplateRef, static: true }) masterItemTemplate: any
+  readonly masterItemTemplate = contentChild(MasterItemDirective, { read: TemplateRef })
 }
