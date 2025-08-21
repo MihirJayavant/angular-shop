@@ -5,7 +5,7 @@ import {
   PostCustomer,
   PostCustomerSuccess,
 } from '../actions'
-import { Injectable } from '@angular/core'
+import { Injectable, inject } from '@angular/core'
 import { Actions, createEffect, ofType } from '@ngrx/effects'
 import { of } from 'rxjs'
 import { catchError, map, switchMap } from 'rxjs/operators'
@@ -14,10 +14,8 @@ import { Customer } from 'src/core/customer'
 
 @Injectable()
 export class CustomerEffect {
-  constructor(
-    private readonly http: HttpService,
-    private readonly actions$: Actions,
-  ) {}
+  private readonly http = inject(HttpService)
+  private readonly actions$ = inject(Actions)
 
   public loadCustomer$ = createEffect(() =>
     this.actions$.pipe(

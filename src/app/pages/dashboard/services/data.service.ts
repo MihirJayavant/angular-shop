@@ -5,12 +5,12 @@ import {
   getCustomerDataState,
   getCustomerError,
 } from '../store'
-import { Injectable } from '@angular/core'
+import { Injectable, inject } from '@angular/core'
 import { Store } from '@ngrx/store'
 
 @Injectable()
 export class DataService {
-  constructor(private readonly store: Store<DashboardState>) {}
+  private readonly store = inject<Store<DashboardState>>(Store)
 
   public loadCustomers() {
     this.store.dispatch(new LoadCustomer())

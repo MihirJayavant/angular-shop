@@ -1,12 +1,12 @@
 import { HttpClient } from '@angular/common/http'
-import { Injectable } from '@angular/core'
+import { Injectable, inject } from '@angular/core'
 import { environment } from 'src/environments/environment'
 
 @Injectable()
 export class HttpService {
-  private readonly baseUrl = environment.baseUrl
+  private http = inject(HttpClient)
 
-  constructor(private http: HttpClient) {}
+  private readonly baseUrl = environment.baseUrl
 
   public get<T>(endpoint: string) {
     return this.http.get<T>(this.baseUrl + endpoint)

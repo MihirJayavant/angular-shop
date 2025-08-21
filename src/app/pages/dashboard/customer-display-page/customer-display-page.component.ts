@@ -4,7 +4,7 @@ import { MasterItemDirective } from '../../../directives/master-item.directive'
 import { FilterCustomerNamePipe } from '../pipes/filter-customer-name.pipe'
 import { FilterCustomerTypePipe } from '../pipes/filter-customer-type.pipe'
 import { DataService } from '../services'
-import { ChangeDetectionStrategy, Component, OnInit, signal } from '@angular/core'
+import { ChangeDetectionStrategy, Component, OnInit, inject, signal } from '@angular/core'
 import { toSignal } from '@angular/core/rxjs-interop'
 import { FormsModule } from '@angular/forms'
 import { DetailComponent, MasterComponent, MasterDetailComponent } from 'src/app/components'
@@ -32,6 +32,8 @@ import { CustomerViewModel } from 'src/core/customer.viewmodel'
   templateUrl: './customer-display-page.component.html',
 })
 export class CustomerDisplayPageComponent implements OnInit {
+  private readonly dataService = inject(DataService)
+
   public searchText = signal('')
 
   public customerType = signal('All')
@@ -45,8 +47,6 @@ export class CustomerDisplayPageComponent implements OnInit {
   })
 
   public selectedCustomer = signal<CustomerViewModel | undefined | null>(null)
-
-  constructor(private readonly dataService: DataService) {}
 
   public ngOnInit(): void {
     if (this.customerDataState() === AsyncDataStateType.INITIAL) this.dataService.loadCustomers()

@@ -1,6 +1,6 @@
 import { CustomerState, PostCustomer } from '../store'
 import { nameValidator } from './form.validators'
-import { ChangeDetectionStrategy, Component } from '@angular/core'
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core'
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms'
 import { Store } from '@ngrx/store'
 import { CustomerType } from 'src/core/customer'
@@ -13,6 +13,9 @@ import { CustomerType } from 'src/core/customer'
   templateUrl: './customer-forms-page.component.html',
 })
 export class CustomerFormsPageComponent {
+  private readonly store = inject<Store<CustomerState>>(Store)
+  private readonly formBuilder = inject(FormBuilder)
+
   public customerType = [CustomerType.basic, CustomerType.lead]
 
   public form = this.formBuilder.group({
@@ -20,11 +23,6 @@ export class CustomerFormsPageComponent {
     mobile: ['', [Validators.required]],
     name: ['', [Validators.required, nameValidator()]],
   })
-
-  constructor(
-    private readonly store: Store<CustomerState>,
-    private readonly formBuilder: FormBuilder,
-  ) {}
 
   public onSubmit() {
     const { value } = this.form

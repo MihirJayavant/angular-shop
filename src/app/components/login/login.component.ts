@@ -1,5 +1,5 @@
 import { NgClass } from '@angular/common'
-import { Component } from '@angular/core'
+import { Component, inject } from '@angular/core'
 import { FormsModule } from '@angular/forms'
 import { Router } from '@angular/router'
 
@@ -9,12 +9,12 @@ import { Router } from '@angular/router'
   templateUrl: './login.component.html',
 })
 export class LoginComponent {
+  private readonly router = inject(Router)
+
   public formData = {
     email: '',
     password: '',
   }
-
-  constructor(private readonly router: Router) {}
 
   public onLogin() {
     this.router.navigate(['/dashboard'])

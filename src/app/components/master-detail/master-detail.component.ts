@@ -1,7 +1,7 @@
 /* eslint-disable sort-keys */
 import { MasterItemDirective } from '../../directives'
 import { animate, style, transition, trigger } from '@angular/animations'
-import { NgFor, NgTemplateOutlet } from '@angular/common'
+import { NgTemplateOutlet } from '@angular/common'
 import { Component, ContentChild, Input, TemplateRef } from '@angular/core'
 
 @Component({
@@ -28,7 +28,7 @@ import { Component, ContentChild, Input, TemplateRef } from '@angular/core'
       ]),
     ]),
   ],
-  imports: [NgFor, NgTemplateOutlet],
+  imports: [NgTemplateOutlet],
   selector: 'app-master-detail',
   templateUrl: './master-detail.component.html',
 })
