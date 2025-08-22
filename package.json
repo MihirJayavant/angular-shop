@@ -16,7 +16,7 @@
     "generate-mock-api-data": "tsc --project mock-server/tsconfig.json && node mock-server/buildScripts/generateData.js",
     "preserver:mock": "npm run generate-mock-api-data",
     "server:mock": "json-server --watch mock-server/buildScripts/db.json --port 3000",
-    "server:sw": "http-server -p 5100 -c-1 dist/Shop -P http://10.0.75.1:5100",
+    "server:sw": "http-server -p 5100 -c-1 dist/Shop/browser",
     "doc": "compodoc -p tsconfig.doc.json -s",
     "serve:ssr:shop": "node dist/shop/server/server.mjs",
     "format:check": "prettier --check .",
